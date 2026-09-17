@@ -385,27 +385,67 @@ function toggleWishlist(id) {
     }
 }
 
-/* ═══════════ LIGHTBOX MODAL ═══════════ */
+/* ═══════════ LIGHTBOX MODAL (Swiper-based) ═══════════ */
 let lbImages = [];
 let lbIndex = 0;
+let lbProductId = null;
+let lbSwiperInstance = null;
 
 function ensureLightboxExists() {
     if (document.getElementById('lightbox')) return;
     const lb = document.createElement('div');
     lb.id = 'lightbox';
-    lb.className = 'lightbox';
+    lb.className = 'fixed inset-0 z-[200] hidden';
     lb.innerHTML = `
-    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close fullscreen"><i data-lucide="x" class="w-6 h-6"></i></button>
-    <button class="lightbox-nav prev" onclick="lightboxPrev()" aria-label="Previous image"><i data-lucide="chevron-left" class="w-6 h-6"></i></button>
-    <button class="lightbox-nav next" onclick="lightboxNext()" aria-label="Next image"><i data-lucide="chevron-right" class="w-6 h-6"></i></button>
-    <div class="lightbox-content">
-      <img id="lightboxImg" src="" alt="Product gallery preview">
+    <!-- Backdrop -->
+    <div id="lbBackdrop" class="absolute inset-0 bg-ink-900/92 backdrop-blur-sm" onclick="closeLightbox()"></div>
+
+    <!-- Modal wrapper -->
+    <div class="relative w-full h-full flex flex-col items-center justify-center pointer-events-none">
+
+      <!-- Close button -->
+      <button onclick="closeLightbox()" class="pointer-events-auto absolute top-4 right-4 sm:top-5 sm:right-5 z-10 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/10 backdrop-blur hover:bg-white/20 flex items-center justify-center transition-all hover:scale-105 border border-white/20" aria-label="Close">
+        <i data-lucide="x" class="w-5 h-5 text-white"></i>
+      </button>
+
+      <!-- Counter badge -->
+      <div id="lbCounter" class="pointer-events-auto absolute top-4 left-4 sm:top-5 sm:left-5 z-10 bg-black/40 backdrop-blur text-white text-xs font-semibold px-3 py-1.5 rounded-full border border-white/15">
+        1 / 1
+      </div>
+
+      <!-- Main Swiper -->
+      <div class="swiper lbMainSwiper pointer-events-auto w-full" style="max-height:75vh; max-width:860px; padding: 0 52px;">
+        <div class="swiper-wrapper">
+          <!-- slides injected dynamically -->
+        </div>
+        <div class="swiper-button-next !text-white !w-10 !h-10 !bg-white/10 !backdrop-blur !rounded-full !border !border-white/20 hover:!bg-white/20 after:!text-sm !right-0 sm:!right-1"></div>
+        <div class="swiper-button-prev !text-white !w-10 !h-10 !bg-white/10 !backdrop-blur !rounded-full !border !border-white/20 hover:!bg-white/20 after:!text-sm !left-0 sm:!left-1"></div>
+      </div>
+
+      <!-- Thumbnail strip -->
+      <div class="swiper lbThumbSwiper pointer-events-auto mt-4" style="max-width:480px; width:100%; padding:0 4px;">
+        <div class="swiper-wrapper flex items-center justify-center"></div>
+      </div>
+
+      <!-- Product info bar -->
+      <div id="lbInfoBar" class="pointer-events-auto mt-4 sm:mt-5 flex items-center gap-3 sm:gap-4 bg-white/8 backdrop-blur border border-white/15 rounded-2xl px-4 py-2.5 sm:px-5 sm:py-3">
+        <div class="min-w-0">
+          <div id="lbProductName" class="text-white font-semibold text-sm sm:text-base truncate max-w-[220px] sm:max-w-[360px]"></div>
+          <div id="lbProductPrice" class="text-sage-300 text-xs sm:text-sm font-medium mt-0.5"></div>
+        </div>
+        <a id="lbViewBtn" href="#" class="shrink-0 bg-white text-ink-900 text-xs sm:text-sm font-bold px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl hover:bg-cream-100 transition-all flex items-center gap-1.5 active:scale-95">
+          View Product <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
     </div>
-    <div id="lightboxCounter" class="lightbox-counter">1 / 1</div>
   `;
     document.body.appendChild(lb);
-    lb.addEventListener('click', e => {
-        if (e.target.id === 'lightbox') closeLightbox();
+
+    // Keyboard navigation
+    lb.addEventListener('keydown', e => {
+        if (e.key === 'ArrowLeft' && lbSwiperInstance) lbSwiperInstance.slidePrev();
+        if (e.key === 'ArrowRight' && lbSwiperInstance) lbSwiperInstance.slideNext();
+        if (e.key === 'Escape') closeLightbox();
     });
 }
 
@@ -413,44 +453,126 @@ function openLightbox(productId, index = 0) {
     ensureLightboxExists();
     const p = products.find(x => x.id === productId);
     if (!p) return;
+    lbProductId = productId;
     lbImages = p.images || [p.image];
     lbIndex = index;
-    updateLightbox();
-    document.getElementById('lightbox').classList.add('show');
+
+    // Inject slides into main swiper wrapper
+    const mainWrapper = document.querySelector('.lbMainSwiper .swiper-wrapper');
+    const thumbWrapper = document.querySelector('.lbThumbSwiper .swiper-wrapper');
+    if (mainWrapper) {
+        mainWrapper.innerHTML = lbImages
+            .map(
+                (img, i) => `
+      <div class="swiper-slide flex items-center justify-center">
+        <img src="${img}" alt="${p.name} image ${i + 1}"
+          class="w-full h-full object-contain rounded-xl sm:rounded-2xl select-none"
+          style="max-height:72vh; max-width:100%;">
+      </div>
+    `
+            )
+            .join('');
+    }
+    if (thumbWrapper) {
+        thumbWrapper.innerHTML = lbImages
+            .map(
+                (img, i) => `
+      <div class="swiper-slide !w-14 sm:!w-16 cursor-pointer">
+        <div class="lb-thumb w-14 h-14 sm:w-16 sm:h-16 rounded-lg sm:rounded-xl overflow-hidden border-2 ${i === index ? 'border-white' : 'border-white/20'} transition-all hover:border-white/60">
+          <img src="${img}" alt="thumb ${i + 1}" class="w-full h-full object-cover">
+        </div>
+      </div>
+    `
+            )
+            .join('');
+    }
+
+    // Destroy old swiper instances
+    if (lbSwiperInstance) {
+        try {
+            lbSwiperInstance.destroy(true, true);
+        } catch (e) {}
+        lbSwiperInstance = null;
+    }
+
+    // Product info
+    const nameEl = document.getElementById('lbProductName');
+    const priceEl = document.getElementById('lbProductPrice');
+    const viewBtn = document.getElementById('lbViewBtn');
+    const counter = document.getElementById('lbCounter');
+    if (nameEl) nameEl.textContent = p.name;
+    if (priceEl) priceEl.textContent = `Rs. ${p.price.toLocaleString()}`;
+    if (viewBtn) viewBtn.href = `${getUrl('product')}?id=${p.id}`;
+
+    // Show modal
+    const lb = document.getElementById('lightbox');
+    lb.classList.remove('hidden');
+    lb.classList.add('flex');
     document.body.style.overflow = 'hidden';
     if (window.lucide) lucide.createIcons();
-}
 
-function updateLightbox() {
-    const img = document.getElementById('lightboxImg');
-    const counter = document.getElementById('lightboxCounter');
-    if (img && lbImages[lbIndex]) {
-        img.src = lbImages[lbIndex];
-        counter.textContent = `${lbIndex + 1} / ${lbImages.length}`;
-    }
-}
+    // Init Swiper after DOM paint
+    setTimeout(() => {
+        if (typeof Swiper === 'undefined') return;
 
-function lightboxPrev() {
-    lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length;
-    updateLightbox();
-}
+        // Thumb swiper (no loop for thumbs)
+        const thumbSwiper = new Swiper('.lbThumbSwiper', {
+            slidesPerView: 'auto',
+            spaceBetween: 8,
+            centeredSlides: true,
+            watchSlidesProgress: true,
+            freeMode: true
+        });
 
-function lightboxNext() {
-    lbIndex = (lbIndex + 1) % lbImages.length;
-    updateLightbox();
+        // Main swiper with fade effect + thumbnail sync
+        lbSwiperInstance = new Swiper('.lbMainSwiper', {
+            initialSlide: index,
+            effect: 'fade',
+            fadeEffect: { crossFade: true },
+            speed: 380,
+            loop: lbImages.length > 1,
+            navigation: {
+                nextEl: '.lbMainSwiper .swiper-button-next',
+                prevEl: '.lbMainSwiper .swiper-button-prev'
+            },
+            thumbs: { swiper: thumbSwiper },
+            keyboard: { enabled: true },
+            on: {
+                slideChange(sw) {
+                    lbIndex = sw.realIndex;
+                    if (counter) counter.textContent = `${sw.realIndex + 1} / ${lbImages.length}`;
+                    // Update thumb border
+                    document.querySelectorAll('.lb-thumb').forEach((t, i) => {
+                        t.classList.toggle('border-white', i === sw.realIndex);
+                        t.classList.toggle('border-white/20', i !== sw.realIndex);
+                    });
+                }
+            }
+        });
+        if (counter) counter.textContent = `${index + 1} / ${lbImages.length}`;
+    }, 60);
 }
 
 function closeLightbox() {
     const lb = document.getElementById('lightbox');
-    if (lb) lb.classList.remove('show');
+    if (lb) {
+        lb.classList.add('hidden');
+        lb.classList.remove('flex');
+    }
+    if (lbSwiperInstance) {
+        try {
+            lbSwiperInstance.destroy(true, true);
+        } catch (e) {}
+        lbSwiperInstance = null;
+    }
     document.body.style.overflow = '';
 }
 
 document.addEventListener('keydown', e => {
     const lb = document.getElementById('lightbox');
-    if (lb && lb.classList.contains('show')) {
-        if (e.key === 'ArrowLeft') lightboxPrev();
-        if (e.key === 'ArrowRight') lightboxNext();
+    if (lb && lb.classList.contains('flex')) {
+        if (e.key === 'ArrowLeft' && lbSwiperInstance) lbSwiperInstance.slidePrev();
+        if (e.key === 'ArrowRight' && lbSwiperInstance) lbSwiperInstance.slideNext();
         if (e.key === 'Escape') closeLightbox();
     }
     if (e.key === 'Escape') {
@@ -571,15 +693,17 @@ function generateProductCardHTML(p) {
     return `
     <div class="group bg-white rounded-2xl sm:rounded-[22px] overflow-hidden border border-sage-100 hover:border-sage-300 transition-all duration-500 hover:shadow-xl hover:shadow-ink-900/6 hover:-translate-y-1 reveal flex flex-col">
       <div class="card-img-wrap aspect-[4/5] bg-sage-100 relative overflow-hidden">
-        <a href="${productUrl}" class="block w-full h-full">
-          <img src="${p.images[0]}" alt="${p.name}" loading="lazy" class="card-img-primary">
-          <img src="${secondaryImg}" alt="${p.name}" loading="lazy" class="card-img-secondary">
-        </a>
+
+        <!-- Image area — click to open lightbox -->
+        <button onclick="openLightbox(${p.id}, 0)" class="block w-full h-full absolute inset-0 z-[1] cursor-zoom-in" aria-label="Preview ${p.name}" tabindex="-1">
+          <img src="${p.images[0]}" alt="${p.name}" loading="lazy" class="card-img-primary pointer-events-none">
+          <img src="${secondaryImg}" alt="${p.name}" loading="lazy" class="card-img-secondary pointer-events-none">
+        </button>
 
         ${
             p.badge
                 ? `
-          <span class="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 z-10 ${p.badge === 'Sale' ? 'bg-terra-500' : 'bg-sage-800'} text-white text-[9px] sm:text-[10px] font-bold tracking-wider uppercase px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full shadow-md">
+          <span class="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 z-10 ${p.badge === 'Sale' ? 'bg-terra-500' : 'bg-sage-800'} text-white text-[9px] sm:text-[10px] font-bold tracking-wider uppercase px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full shadow-md pointer-events-none">
             ${discount ? `-${discount}%` : p.badge}
           </span>
         `
@@ -592,11 +716,10 @@ function generateProductCardHTML(p) {
           <i data-lucide="heart" class="w-3.5 h-3.5 sm:w-4 sm:h-4 ${isWished ? 'text-terra-500 fill-terra-500' : 'text-ink-800'}"></i>
         </button>
 
-        <button onclick="openLightbox(${p.id}, 0)"
-          class="hidden sm:flex absolute bottom-3 right-3 z-10 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/95 backdrop-blur items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 shadow-sm hover:scale-110"
-          title="Quick preview" aria-label="Quick preview">
-          <i data-lucide="expand" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-ink-800"></i>
-        </button>
+        <!-- Expand icon hint (desktop hover) -->
+        <div class="hidden sm:flex absolute bottom-12 right-3 z-10 items-center gap-1.5 bg-black/50 backdrop-blur text-white text-[10px] font-medium px-2.5 py-1 rounded-full opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 pointer-events-none">
+          <i data-lucide="zoom-in" class="w-3 h-3"></i> Click to preview
+        </div>
 
         <button onclick="addToCart(${p.id})"
           class="absolute bottom-2.5 left-2.5 right-2.5 sm:bottom-3 sm:left-3 sm:right-3 z-10 bg-sage-800 text-cream-100 py-2 sm:py-2.5 rounded-xl text-[11px] sm:text-xs font-semibold opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-300 flex items-center justify-center gap-1.5 sm:gap-2 hover:bg-sage-700 shadow-lg"
@@ -697,6 +820,279 @@ function initHomePage() {
     }
 
     initHeroSwiper();
+    initLuxury3DShowroom();
+    if (window.lucide) lucide.createIcons();
+}
+
+/* ═════════════════════════════════════════════════════
+   LUXURY 3D ATELIER SHOWROOM — REAL-TIME 3D SCROLL & TILT
+   ═════════════════════════════════════════════════════ */
+
+let current3DModel = 'bed';
+let is3DSpinning = false;
+let mouseTiltX = 0;
+let mouseTiltY = 0;
+let targetMouseTiltX = 0;
+let targetMouseTiltY = 0;
+
+const modelData = {
+    bed: {
+        img: 'assets/images/luxury_bed.jpg',
+        watermark: 'BEDDING',
+        pins: [
+            { title: '400TC Egyptian Cotton', sub: 'Heirloom emerald velvet & linen duvet layer' },
+            { title: 'Brushed Gold Brass Frame', sub: 'Hand-welded architectural tapered legs' },
+            { title: 'Hand-Quilted Geometry', sub: 'Plush diamond stitching with cloud loft' }
+        ],
+        stats: [
+            { val: '400 TC', label: 'Long-Staple Sateen' },
+            { val: '100% Hand', label: 'Artisan Needlework' },
+            { val: 'Custom', label: 'Bespoke Fit Sizes' },
+            { val: 'Free Trial', label: '30-Night Slumber' }
+        ]
+    },
+    sofa: {
+        img: 'assets/images/luxury_sofa.jpg',
+        watermark: 'SALON',
+        pins: [
+            { title: 'Italian Emerald Velvet', sub: 'Double-rub tested 50,000 cycle upholstery' },
+            { title: 'Solid Teak & Cast Brass', sub: 'Artisan cast brass legs with satin brush' },
+            { title: 'Pocket Springs & Down', sub: 'High-resilience foam core with feather topper' }
+        ],
+        stats: [
+            { val: '92 Inch', label: 'Three-Seater Depth' },
+            { val: '50K Rubs', label: 'Heavy Domestic Grade' },
+            { val: 'Kiln-Dried', label: 'Solid Teak Internal Frame' },
+            { val: '10 Years', label: 'Structural Craft Warranty' }
+        ]
+    }
+};
+
+function initLuxury3DShowroom() {
+    const section = document.getElementById('luxury3dShowroom');
+    const rig = document.getElementById('furnitureRig');
+    const shadow = document.getElementById('pedestalContactShadow');
+    const viewport = document.getElementById('stageViewport');
+    const statusHud = document.getElementById('scrollPhysicsStatus');
+
+    if (!section || !rig) return;
+
+    // Smooth Lerp Variables
+    let currentY = -220;
+    let currentRotX = 35;
+    let currentRotY = -50;
+    let currentRotZ = -14;
+    let currentScale = 0.75;
+    let currentShadowOpacity = 0.2;
+    let currentShadowScale = 0.55;
+
+    // Target Variables calculated from Scroll
+    let targetY = -220;
+    let targetRotX = 35;
+    let targetRotY = -50;
+    let targetRotZ = -14;
+    let targetScale = 0.75;
+    let targetShadowOpacity = 0.2;
+    let targetShadowScale = 0.55;
+
+    // ── Mouse & Touch Tilt Listeners on the 3D Stage ──
+    if (viewport) {
+        const handlePointerMove = (clientX, clientY) => {
+            const rect = viewport.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const normX = (clientX - centerX) / (rect.width / 2);
+            const normY = (clientY - centerY) / (rect.height / 2);
+
+            targetMouseTiltY = Math.max(-1, Math.min(1, normX)) * 22; // rotate around Y
+            targetMouseTiltX = -Math.max(-1, Math.min(1, normY)) * 16; // tilt around X
+        };
+
+        viewport.addEventListener('mousemove', e => handlePointerMove(e.clientX, e.clientY));
+        viewport.addEventListener('mouseleave', () => {
+            targetMouseTiltX = 0;
+            targetMouseTiltY = 0;
+        });
+
+        viewport.addEventListener(
+            'touchmove',
+            e => {
+                if (e.touches && e.touches[0]) {
+                    handlePointerMove(e.touches[0].clientX, e.touches[0].clientY);
+                }
+            },
+            { passive: true }
+        );
+
+        viewport.addEventListener('touchend', () => {
+            targetMouseTiltX = 0;
+            targetMouseTiltY = 0;
+        });
+    }
+
+    // ── Scroll Tracking & Real-Time 3D Physics Loop ──
+    function updateScrollTargets() {
+        const rect = section.getBoundingClientRect();
+        const vh = window.innerHeight;
+
+        // Progress: 0 when top enters viewport, 0.5 at center, 1 when leaves top
+        const totalDist = vh + rect.height;
+        const currentDist = vh - rect.top;
+        const progress = Math.max(0, Math.min(1, currentDist / totalDist));
+
+        if (progress <= 0.18) {
+            // High above in the air, rotated and tumbling
+            targetY = -220;
+            targetRotX = 36;
+            targetRotY = -52;
+            targetRotZ = -15;
+            targetScale = 0.72;
+            targetShadowOpacity = 0.15;
+            targetShadowScale = 0.5;
+            if (statusHud) statusHud.textContent = '✦ Scroll to tumble in 3D';
+        } else if (progress < 0.54) {
+            // Actively falling, spinning, and settling into center!
+            const norm = (progress - 0.18) / (0.54 - 0.18);
+            // Smooth ease-out curve
+            const ease = 1 - Math.pow(1 - norm, 2.5);
+
+            targetY = -220 * (1 - ease);
+            targetRotX = 36 - (36 - 7) * ease;
+            targetRotY = -52 * (1 - ease);
+            targetRotZ = -15 * (1 - ease);
+            targetScale = 0.72 + 0.28 * ease;
+            targetShadowOpacity = 0.15 + 0.75 * ease;
+            targetShadowScale = 0.5 + 0.5 * ease;
+            if (statusHud) statusHud.textContent = '✦ Descending & landing on stage...';
+        } else {
+            // Settled on pedestal — gentle continuous 3D camera pan as user scrolls past
+            const pastNorm = Math.min(1, (progress - 0.54) / 0.46);
+            targetY = pastNorm * 40;
+            targetRotX = 7 + pastNorm * 12;
+            targetRotY = pastNorm * 28;
+            targetRotZ = pastNorm * 5;
+            targetScale = 1.0 - pastNorm * 0.08;
+            targetShadowOpacity = 0.9 - pastNorm * 0.3;
+            targetShadowScale = 1.0;
+            if (statusHud) statusHud.textContent = '✦ Centered on Atelier Stage';
+        }
+    }
+
+    // ── Continuous Animation Frame (Smooth Lerping) ──
+    function renderPhysics() {
+        updateScrollTargets();
+
+        // Smoothly interpolate mouse tilt
+        mouseTiltX += (targetMouseTiltX - mouseTiltX) * 0.08;
+        mouseTiltY += (targetMouseTiltY - mouseTiltY) * 0.08;
+
+        if (!is3DSpinning && !rig.classList.contains('is-flipping')) {
+            // Smoothly interpolate transforms
+            currentY += (targetY - currentY) * 0.1;
+            currentRotX += (targetRotX - currentRotX) * 0.1;
+            currentRotY += (targetRotY - currentRotY) * 0.1;
+            currentRotZ += (targetRotZ - currentRotZ) * 0.1;
+            currentScale += (targetScale - currentScale) * 0.1;
+            currentShadowOpacity += (targetShadowOpacity - currentShadowOpacity) * 0.1;
+            currentShadowScale += (targetShadowScale - currentShadowScale) * 0.1;
+
+            const finalRotX = currentRotX + mouseTiltX;
+            const finalRotY = currentRotY + mouseTiltY;
+            const finalRotZ = currentRotZ;
+
+            rig.style.transform = `translateY(${currentY.toFixed(1)}px) rotateX(${finalRotX.toFixed(2)}deg) rotateY(${finalRotY.toFixed(2)}deg) rotateZ(${finalRotZ.toFixed(2)}deg) scale(${currentScale.toFixed(3)})`;
+
+            if (shadow) {
+                shadow.style.opacity = currentShadowOpacity.toFixed(2);
+                shadow.style.transform = `scaleY(0.7) scale(${currentShadowScale.toFixed(3)})`;
+            }
+        }
+
+        requestAnimationFrame(renderPhysics);
+    }
+
+    window.addEventListener('scroll', updateScrollTargets, { passive: true });
+    renderPhysics();
+}
+
+/* ── Switch between Bed and Sofa with 3D Flip ── */
+function switch3DModel(type) {
+    if (current3DModel === type || is3DSpinning) return;
+    current3DModel = type;
+
+    const btnBed = document.getElementById('btnModelBed');
+    const btnSofa = document.getElementById('btnModelSofa');
+    const rig = document.getElementById('furnitureRig');
+    const img = document.getElementById('furniture3dImg');
+    const watermark = document.getElementById('showroomWatermark');
+
+    // Toggle button active states
+    if (btnBed && btnSofa) {
+        btnBed.classList.toggle('active', type === 'bed');
+        btnSofa.classList.toggle('active', type === 'sofa');
+    }
+
+    const data = modelData[type];
+    if (!data || !rig || !img) return;
+
+    // Trigger 3D flip card animation
+    rig.classList.remove('is-spinning');
+    rig.classList.add('is-flipping');
+
+    // Halfway through flip (at 90 degrees), swap content
+    setTimeout(() => {
+        img.src = data.img;
+        if (watermark) watermark.textContent = data.watermark;
+
+        // Update Pins
+        data.pins.forEach((p, idx) => {
+            const titleEl = document.getElementById(`pinTitle${idx + 1}`);
+            const subEl = document.getElementById(`pinSub${idx + 1}`);
+            if (titleEl) titleEl.textContent = p.title;
+            if (subEl) subEl.textContent = p.sub;
+        });
+
+        // Update Stats
+        data.stats.forEach((s, idx) => {
+            const valEl = document.getElementById(`statVal${idx + 1}`);
+            const lblEl = document.getElementById(`statLabel${idx + 1}`);
+            if (valEl) valEl.textContent = s.val;
+            if (lblEl) lblEl.textContent = s.label;
+        });
+
+        if (window.lucide) lucide.createIcons();
+        showToast(`Viewing 3D ${type === 'bed' ? 'Heirloom King Bed' : 'Velvet Salon Sofa'}`, 'sparkles');
+    }, 380);
+
+    setTimeout(() => {
+        rig.classList.remove('is-flipping');
+    }, 780);
+}
+
+/* ── Trigger 360° Continuous Spin ── */
+function trigger360Spin() {
+    const rig = document.getElementById('furnitureRig');
+    if (!rig || is3DSpinning) return;
+
+    is3DSpinning = true;
+    rig.classList.remove('is-flipping');
+    rig.classList.add('is-spinning');
+    showToast('Rotating 360° ✦ Interactive 3D Orbit', 'rotate-3d');
+
+    setTimeout(() => {
+        rig.classList.remove('is-spinning');
+        is3DSpinning = false;
+    }, 2400);
+}
+
+/* ── Toggle Hotspot Tooltip on Mobile Tap ── */
+function toggleHotspotTip(index) {
+    const pin = document.getElementById(`hotspotPin${index}`);
+    if (pin) {
+        const isAct = pin.classList.contains('active');
+        document.querySelectorAll('.hotspot-pin').forEach(p => p.classList.remove('active'));
+        if (!isAct) pin.classList.add('active');
+    }
 }
 
 /* ═══════════ PAGE: SHOP — ADVANCED SIDEBAR & MOBILE DRAWER ═══════════ */
