@@ -279,7 +279,7 @@ function isSubPage() {
 
 function getUrl(path) {
     const sub = isSubPage();
-    if (path === 'home') return sub ? '../index.html' : 'index.html';
+    if (path === 'index' || path === 'home') return sub ? '../index.html' : 'index.html';
     if (path === 'shop') return sub ? 'shop.html' : 'pages/shop.html';
     if (path === 'product') return sub ? 'product.html' : 'pages/product.html';
     if (path === 'cart') return sub ? 'cart.html' : 'pages/cart.html';
@@ -1164,23 +1164,31 @@ function initProductDetailPage() {
     const ratingDist = [78, 16, 4, 1, 1];
 
     container.innerHTML = `
-    <div class="mb-6 animate-fade-up">
-      <a href="${getUrl('shop')}" class="inline-flex items-center gap-2 text-sm text-ink-800/60 hover:text-ink-900 transition-colors">
-        <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to shop
-      </a>
+    <!-- ══ BREADCRUMB ══ -->
+    <div class="mb-4 sm:mb-6 animate-fade-up">
+      <nav class="flex items-center gap-2 text-[11px] text-ink-800/50 font-medium tracking-wide">
+        <a href="${getUrl('index')}" class="hover:text-sage-700 transition-colors">Home</a>
+        <span class="text-ink-800/25">/</span>
+        <a href="${getUrl('shop')}" class="hover:text-sage-700 transition-colors">Shop</a>
+        <span class="text-ink-800/25">/</span>
+        <span class="text-ink-800/80 truncate max-w-[180px] sm:max-w-none">${p.name}</span>
+      </nav>
     </div>
 
-    <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
-      <!-- Gallery Column -->
-      <div class="animate-fade-up">
-        <div class="swiper productSwiper rounded-[32px] overflow-hidden bg-sage-100 relative shadow-lg">
+    <!-- ══ MAIN PRODUCT GRID ══ -->
+    <div class="grid lg:grid-cols-[1fr_480px] xl:grid-cols-[1fr_520px] gap-6 sm:gap-10 lg:gap-14 items-start">
+
+      <!-- ════ IMAGE GALLERY ════ -->
+      <div class="animate-fade-up" style="animation-delay:.05s">
+        <!-- Mobile: full bleed, rounded only at bottom -->
+        <div class="swiper productSwiper rounded-2xl sm:rounded-[28px] overflow-hidden bg-sage-100 relative shadow-lg aspect-square sm:aspect-auto">
           <div class="swiper-wrapper">
             ${p.images
                 .map(
                     (img, i) => `
               <div class="swiper-slide cursor-zoom-in" onclick="openLightbox(${p.id}, ${i})">
                 <div class="aspect-square">
-                  <img src="${img}" alt="${p.name}" class="w-full h-full object-cover">
+                  <img src="${img}" alt="${p.name}" class="w-full h-full object-cover" loading="${i === 0 ? 'eager' : 'lazy'}">
                 </div>
               </div>
             `
@@ -1188,127 +1196,178 @@ function initProductDetailPage() {
                 .join('')}
           </div>
           <div class="swiper-pagination"></div>
-          <div class="swiper-button-next !text-ink-900 !w-11 !h-11 !bg-white/85 !backdrop-blur !rounded-full !shadow-md after:!text-sm"></div>
-          <div class="swiper-button-prev !text-ink-900 !w-11 !h-11 !bg-white/85 !backdrop-blur !rounded-full !shadow-md after:!text-sm"></div>
+          <div class="swiper-button-next !text-ink-900 !w-10 !h-10 sm:!w-11 sm:!h-11 !bg-white/90 !backdrop-blur !rounded-full !shadow-md after:!text-sm !right-3 sm:!right-4"></div>
+          <div class="swiper-button-prev !text-ink-900 !w-10 !h-10 sm:!w-11 sm:!h-11 !bg-white/90 !backdrop-blur !rounded-full !shadow-md after:!text-sm !left-3 sm:!left-4"></div>
           ${
               p.badge
                   ? `
-            <span class="absolute top-5 left-5 z-10 ${p.badge === 'Sale' ? 'bg-terra-500' : 'bg-sage-800'} text-white text-xs font-bold tracking-wider uppercase px-3.5 py-1.5 rounded-full shadow-md">
+            <span class="absolute top-3 left-3 sm:top-5 sm:left-5 z-10 ${p.badge === 'Sale' ? 'bg-terra-500' : 'bg-sage-800'} text-white text-[10px] sm:text-xs font-bold tracking-wider uppercase px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full shadow-md">
               ${discount ? `-${discount}% OFF` : p.badge}
             </span>
           `
                   : ''
           }
-          <button onclick="openLightbox(${p.id}, 0)" class="absolute bottom-5 right-5 z-10 w-10 h-10 rounded-full bg-white/90 backdrop-blur flex items-center justify-center shadow-md hover:scale-110 transition-transform" title="Fullscreen gallery">
-            <i data-lucide="expand" class="w-4 h-4 text-ink-800"></i>
+          <button onclick="openLightbox(${p.id}, 0)" class="absolute bottom-3 right-3 sm:bottom-5 sm:right-5 z-10 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/90 backdrop-blur flex items-center justify-center shadow-md hover:scale-110 transition-transform" title="Fullscreen">
+            <i data-lucide="expand" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-ink-800"></i>
           </button>
         </div>
-        <div class="flex items-center justify-center gap-2 mt-4 text-xs text-ink-800/50">
-          <i data-lucide="zoom-in" class="w-3.5 h-3.5"></i> Tap any image to view in fullscreen gallery
-        </div>
+        <p class="flex items-center justify-center gap-1.5 mt-3 text-[11px] text-ink-800/40 font-medium">
+          <i data-lucide="zoom-in" class="w-3 h-3"></i> Tap image to view fullscreen
+        </p>
       </div>
 
-      <!-- Info Column -->
-      <div class="animate-fade-up">
-        <div class="flex items-center gap-2 mb-3">
-          <span class="text-gold-500 text-sm">★★★★★</span>
-          <span class="text-sm text-ink-800/60 font-medium">${p.rating} · ${p.reviews} reviews · ${p.sold}+ sold</span>
+      <!-- ════ PRODUCT INFO ════ -->
+      <div class="animate-fade-up" style="animation-delay:.12s">
+
+        <!-- Rating bar -->
+        <div class="flex items-center gap-2 mb-3 flex-wrap">
+          <div class="flex items-center gap-1">
+            <span class="text-gold-500 text-[13px] tracking-tight">★★★★★</span>
+            <span class="text-xs font-bold text-ink-900 ml-0.5">${p.rating}</span>
+          </div>
+          <span class="w-1 h-1 rounded-full bg-ink-800/20"></span>
+          <span class="text-xs text-ink-800/55">${p.reviews} reviews</span>
+          <span class="w-1 h-1 rounded-full bg-ink-800/20"></span>
+          <span class="text-xs text-ink-800/55">${p.sold}+ sold</span>
+          ${p.badge ? `<span class="ml-auto bg-${p.badge === 'Sale' ? 'terra' : 'sage'}-100 text-${p.badge === 'Sale' ? 'terra' : 'sage'}-700 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">${p.badge}</span>` : ''}
         </div>
 
-        <h1 class="font-display text-3xl lg:text-4xl font-semibold leading-tight mb-4 text-ink-900">${p.name}</h1>
+        <h1 class="font-display text-2xl sm:text-3xl lg:text-[32px] xl:text-4xl font-semibold leading-tight mb-4 text-ink-900">${p.name}</h1>
 
+        <!-- Pricing -->
         <div class="flex items-baseline gap-3 mb-5 flex-wrap">
-          <span class="font-display text-3xl font-semibold text-ink-900">Rs. ${p.price.toLocaleString()}</span>
-          ${p.old ? `<span class="text-lg text-ink-800/40 line-through">Rs. ${p.old.toLocaleString()}</span>` : ''}
-          ${discount ? `<span class="bg-terra-100 text-terra-700 text-xs font-bold px-3 py-1.5 rounded-full">SAVE ${discount}%</span>` : ''}
+          <span class="font-display text-2xl sm:text-3xl font-bold text-ink-900">Rs. ${p.price.toLocaleString()}</span>
+          ${p.old ? `<span class="text-base sm:text-lg text-ink-800/40 line-through font-normal">Rs. ${p.old.toLocaleString()}</span>` : ''}
+          ${discount ? `<span class="bg-terra-100 text-terra-700 text-xs font-bold px-3 py-1 rounded-full">SAVE ${discount}%</span>` : ''}
         </div>
 
-        <p class="text-ink-800/75 leading-relaxed mb-4">${p.desc}</p>
-        <p class="text-ink-800/65 leading-relaxed mb-6 text-sm">${p.longDesc}</p>
+        <!-- Short desc -->
+        <p class="text-ink-800/75 leading-relaxed mb-3 text-sm sm:text-base">${p.desc}</p>
+        <p class="text-ink-800/60 leading-relaxed mb-6 text-xs sm:text-sm">${p.longDesc}</p>
 
-        <!-- Color selector -->
-        <div class="mb-6">
-          <div class="flex items-center justify-between mb-2.5">
-            <span class="text-sm font-semibold">Color Selection</span>
-            <span class="text-xs text-ink-800/50" id="colorLabel">Option 1</span>
+        <div class="space-y-5">
+          <!-- Color selector -->
+          <div>
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-ink-900">Colour</span>
+              <span class="text-xs text-sage-700 bg-sage-100 px-2 py-0.5 rounded-full font-medium" id="colorLabel">Option 1</span>
+            </div>
+            <div class="flex gap-2.5 flex-wrap">
+              ${p.colors
+                  .map(
+                      (c, i) => `
+                <button onclick="selectProductColor(${i}, '${c}')"
+                  class="color-btn w-9 h-9 sm:w-10 sm:h-10 rounded-full border-[2px] transition-all hover:scale-105 relative ${i === 0 ? 'border-sage-800 shadow-[0_0_0_3px_rgba(53,66,40,0.2)]' : 'border-white shadow-sm'}"
+                  style="background:${c}" title="Colour ${i + 1}">
+                  ${i === 0 ? '<span class="absolute inset-0 flex items-center justify-center"><i data-lucide="check" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white drop-shadow"></i></span>' : ''}
+                </button>
+              `
+                  )
+                  .join('')}
+            </div>
           </div>
-          <div class="flex gap-3">
-            ${p.colors
-                .map(
-                    (c, i) => `
-              <button onclick="selectProductColor(${i}, '${c}')"
-                class="color-btn w-10 h-10 rounded-full border-2 transition-all hover:scale-110 relative ${i === 0 ? 'border-sage-800 ring-2 ring-sage-800/20' : 'border-transparent'}"
-                style="background:${c}">
-                ${i === 0 ? '<span class="absolute inset-0 flex items-center justify-center"><i data-lucide="check" class="w-4 h-4 text-white drop-shadow"></i></span>' : ''}
-              </button>
-            `
-                )
-                .join('')}
+
+          <!-- Size selector -->
+          <div>
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-ink-900">Size</span>
+              <a href="#" class="text-xs text-sage-600 font-medium underline underline-offset-2">Size guide</a>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              ${p.sizes
+                  .map(
+                      (s, i) => `
+                <button onclick="selectProductSize(${i}, '${s}')"
+                  class="size-btn px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl border-[1.5px] ${i === 0 ? 'border-sage-800 bg-sage-800 text-cream-100 shadow-sm' : 'border-sage-200 bg-white hover:border-sage-400 text-ink-800'} text-xs sm:text-sm font-semibold transition-all">
+                  ${s}
+                </button>
+              `
+                  )
+                  .join('')}
+            </div>
+          </div>
+
+          <!-- Quantity -->
+          <div class="flex items-center gap-4 sm:gap-5">
+            <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-ink-900">Qty</span>
+            <div class="flex items-center border-[1.5px] border-sage-200 rounded-full bg-white overflow-hidden shadow-xs">
+              <button onclick="changeDetailQty(-1)" class="w-9 h-9 sm:w-10 sm:h-10 hover:bg-sage-100 transition-colors flex items-center justify-center"><i data-lucide="minus" class="w-3 h-3 sm:w-3.5 sm:h-3.5"></i></button>
+              <span id="detailQty" class="w-10 sm:w-12 text-center font-bold text-sm">1</span>
+              <button onclick="changeDetailQty(1)" class="w-9 h-9 sm:w-10 sm:h-10 hover:bg-sage-100 transition-colors flex items-center justify-center"><i data-lucide="plus" class="w-3 h-3 sm:w-3.5 sm:h-3.5"></i></button>
+            </div>
+            <span class="text-xs text-sage-700 font-semibold flex items-center gap-1 bg-sage-100 px-2.5 py-1 rounded-full">
+              <i data-lucide="check" class="w-3 h-3"></i> In stock
+            </span>
           </div>
         </div>
 
-        <!-- Size selector -->
-        <div class="mb-6">
-          <div class="flex items-center justify-between mb-2.5">
-            <span class="text-sm font-semibold">Bedding Size</span>
-            <span class="text-xs text-sage-600 font-medium">Standard Fit</span>
-          </div>
-          <div class="flex flex-wrap gap-2.5">
-            ${p.sizes
-                .map(
-                    (s, i) => `
-              <button onclick="selectProductSize(${i}, '${s}')"
-                class="size-btn px-5 py-2.5 rounded-xl border-[1.5px] ${i === 0 ? 'border-sage-800 bg-sage-800 text-cream-100' : 'border-sage-200 bg-white hover:border-sage-400'} text-sm font-medium transition-all">
-                ${s}
-              </button>
-            `
-                )
-                .join('')}
-          </div>
-        </div>
-
-        <!-- Quantity + Add to Cart -->
-        <div class="flex items-center gap-5 mb-6">
-          <span class="text-sm font-semibold">Quantity</span>
-          <div class="flex items-center border-[1.5px] border-sage-200 bg-white rounded-full overflow-hidden">
-            <button onclick="changeDetailQty(-1)" class="w-10 h-10 hover:bg-sage-100 transition-colors flex items-center justify-center"><i data-lucide="minus" class="w-3.5 h-3.5"></i></button>
-            <span id="detailQty" class="w-12 text-center font-semibold text-sm">1</span>
-            <button onclick="changeDetailQty(1)" class="w-10 h-10 hover:bg-sage-100 transition-colors flex items-center justify-center"><i data-lucide="plus" class="w-3.5 h-3.5"></i></button>
-          </div>
-          <span class="text-xs text-sage-700 font-medium flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5"></i> In stock</span>
-        </div>
-
-        <div class="flex flex-col sm:flex-row gap-3 mb-7">
+        <!-- CTA buttons (hidden on mobile — shown via sticky footer) -->
+        <div class="hidden sm:flex flex-col gap-3 mt-7">
           <button onclick="addToCart(${p.id}, currentDetailQty, selectedDetailSize, selectedDetailColor)"
-            class="flex-1 bg-sage-800 text-cream-100 py-4 rounded-2xl text-sm font-semibold hover:bg-sage-700 transition-all hover:shadow-xl hover:shadow-sage-800/20 flex items-center justify-center gap-2">
-            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Add to cart
+            class="w-full bg-sage-800 text-cream-100 py-4 rounded-2xl text-sm font-semibold hover:bg-sage-700 transition-all hover:shadow-xl hover:shadow-sage-800/20 flex items-center justify-center gap-2 active:scale-[.98]">
+            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Add to Bag
           </button>
           <button onclick="toggleWishlist(${p.id})" data-wish-btn="${p.id}"
-            class="sm:w-auto px-6 py-4 rounded-2xl border-[1.5px] border-sage-200 bg-white hover:border-terra-400 hover:bg-terra-50 transition-all flex items-center justify-center gap-2 text-sm font-semibold">
-            <i data-lucide="heart" class="w-4 h-4 ${isWished ? 'text-terra-500 fill-terra-500' : ''}"></i> ${isWished ? 'Saved' : 'Save'}
+            class="w-full py-3.5 rounded-2xl border-[1.5px] border-sage-200 bg-white hover:border-terra-300 hover:bg-terra-50 transition-all flex items-center justify-center gap-2 text-sm font-semibold text-ink-800">
+            <i data-lucide="heart" class="w-4 h-4 ${isWished ? 'text-terra-500 fill-terra-500' : ''}"></i> ${isWished ? 'Saved to Wishlist' : 'Save to Wishlist'}
           </button>
         </div>
 
-        <!-- Delivery feature box -->
-        <div class="bg-sage-50/80 border border-sage-100 rounded-2xl p-4.5 mb-7 flex items-center gap-3.5">
-          <div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-xs shrink-0">
-            <i data-lucide="truck" class="w-4 h-4 text-sage-600"></i>
+        <!-- Mobile CTA — visible only on small screens via sticky bar below -->
+        <div class="flex sm:hidden gap-3 mt-6">
+          <button onclick="addToCart(${p.id}, currentDetailQty, selectedDetailSize, selectedDetailColor)"
+            class="flex-1 bg-sage-800 text-cream-100 py-3.5 rounded-xl text-sm font-semibold hover:bg-sage-700 transition-all flex items-center justify-center gap-2 active:scale-[.98]">
+            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Add to Bag
+          </button>
+          <button onclick="toggleWishlist(${p.id})" data-wish-btn="${p.id}"
+            class="w-12 h-12 rounded-xl border-[1.5px] border-sage-200 bg-white flex items-center justify-center hover:border-terra-400 transition active:scale-95">
+            <i data-lucide="heart" class="w-4.5 h-4.5 ${isWished ? 'text-terra-500 fill-terra-500' : 'text-ink-800'}"></i>
+          </button>
+        </div>
+
+        <!-- Delivery & trust -->
+        <div class="mt-5 sm:mt-7 rounded-2xl border border-sage-100 bg-sage-50/60 overflow-hidden">
+          <div class="flex items-center gap-3 p-3.5 sm:p-4 border-b border-sage-100/70">
+            <div class="w-9 h-9 rounded-lg bg-white flex items-center justify-center shadow-xs shrink-0">
+              <i data-lucide="truck" class="w-4 h-4 text-sage-600"></i>
+            </div>
+            <div>
+              <div class="text-xs sm:text-sm font-semibold text-ink-900">${p.delivery}</div>
+              <div class="text-[11px] text-ink-800/50">30-day money-back guarantee</div>
+            </div>
           </div>
-          <div class="text-sm">
-            <div class="font-semibold text-ink-800">${p.delivery}</div>
-            <div class="text-xs text-ink-800/55">30-day money-back satisfaction guarantee</div>
+          <div class="flex items-center gap-3 p-3.5 sm:p-4 border-b border-sage-100/70">
+            <div class="w-9 h-9 rounded-lg bg-white flex items-center justify-center shadow-xs shrink-0">
+              <i data-lucide="shield-check" class="w-4 h-4 text-sage-600"></i>
+            </div>
+            <div>
+              <div class="text-xs sm:text-sm font-semibold text-ink-900">Secure Payment</div>
+              <div class="text-[11px] text-ink-800/50">256-bit SSL encryption on all orders</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 p-3.5 sm:p-4">
+            <div class="w-9 h-9 rounded-lg bg-white flex items-center justify-center shadow-xs shrink-0">
+              <i data-lucide="package" class="w-4 h-4 text-sage-600"></i>
+            </div>
+            <div>
+              <div class="text-xs sm:text-sm font-semibold text-ink-900">Luxury Gift Packaging</div>
+              <div class="text-[11px] text-ink-800/50">Complimentary on every order</div>
+            </div>
           </div>
         </div>
 
-        <!-- Product specifications -->
-        <div class="border-t border-sage-200 pt-6">
-          <h3 class="font-semibold mb-3 text-sm tracking-wide text-ink-900">Product Highlights & Specifications</h3>
-          <ul class="space-y-2.5">
+        <!-- Specifications -->
+        <div class="mt-5 sm:mt-6 pt-5 sm:pt-6 border-t border-sage-100">
+          <h3 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-ink-900 mb-3.5">Product Highlights</h3>
+          <ul class="space-y-2">
             ${p.details
                 .map(
                     d => `
-              <li class="flex items-start gap-2.5 text-sm text-ink-800/70">
-                <i data-lucide="check" class="w-4 h-4 text-sage-600 shrink-0 mt-0.5"></i> ${d}
+              <li class="flex items-start gap-2.5 text-xs sm:text-sm text-ink-800/70 leading-relaxed">
+                <span class="w-4 h-4 rounded-full bg-sage-100 flex items-center justify-center shrink-0 mt-0.5">
+                  <i data-lucide="check" class="w-2.5 h-2.5 text-sage-700"></i>
+                </span>
+                ${d}
               </li>
             `
                 )
@@ -1318,73 +1377,85 @@ function initProductDetailPage() {
       </div>
     </div>
 
-    <!-- Rating & Reviews Section -->
-    <div class="mt-20 grid lg:grid-cols-3 gap-8">
-      <div class="bg-white rounded-3xl p-7 border border-sage-100 shadow-sm">
-        <h3 class="font-display text-2xl font-semibold mb-2">Customer Rating</h3>
-        <div class="flex items-baseline gap-3 mb-5">
-          <span class="font-display text-5xl font-semibold">${p.rating}</span>
-          <div>
-            <div class="text-gold-500 text-base">★★★★★</div>
-            <div class="text-xs text-ink-800/55">${p.reviews} verified reviews</div>
-          </div>
+    <!-- ══ REVIEWS SECTION ══ -->
+    <div class="mt-14 sm:mt-20">
+      <div class="flex items-center gap-3 mb-6">
+        <h2 class="font-display text-xl sm:text-2xl font-semibold text-ink-900">Customer Reviews</h2>
+        <div class="flex items-center gap-1 bg-gold-400/10 border border-gold-400/30 px-2.5 py-1 rounded-full">
+          <span class="text-gold-500 text-xs">★</span>
+          <span class="text-xs font-bold text-ink-900">${p.rating}</span>
+          <span class="text-[10px] text-ink-800/50">/ 5.0</span>
         </div>
-        <div class="space-y-2.5">
-          ${ratingDist
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-5 sm:gap-8">
+        <!-- Rating summary -->
+        <div class="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 border border-sage-100 shadow-xs">
+          <div class="flex items-baseline gap-3 mb-5">
+            <span class="font-display text-5xl font-bold text-ink-900">${p.rating}</span>
+            <div>
+              <div class="text-gold-500 text-sm leading-none mb-1">★★★★★</div>
+              <div class="text-xs text-ink-800/55">${p.reviews} verified reviews</div>
+            </div>
+          </div>
+          <div class="space-y-2">
+            ${ratingDist
+                .map(
+                    (pct, i) => `
+              <div class="flex items-center gap-2.5 text-xs">
+                <span class="w-6 text-ink-800/60 font-medium shrink-0">${5 - i}★</span>
+                <div class="rating-bar flex-1"><div style="width:${pct}%"></div></div>
+                <span class="w-8 text-right text-ink-800/45 shrink-0">${pct}%</span>
+              </div>
+            `
+                )
+                .join('')}
+          </div>
+          <button onclick="showToast('Review submitted for verification!')" class="w-full mt-5 border-[1.5px] border-sage-200 text-ink-800 py-2.5 rounded-xl text-xs font-semibold hover:bg-sage-50 transition">
+            + Write a Review
+          </button>
+        </div>
+
+        <!-- Review cards -->
+        <div class="lg:col-span-2 grid sm:grid-cols-1 gap-4">
+          ${[
+              {
+                  name: 'Fatima A.',
+                  img: 40,
+                  date: '2 weeks ago',
+                  text: 'Absolutely in love with this set! The fabric feels incredibly luxurious and the stitching is flawless. Transformed our master suite.',
+                  stars: 5
+              },
+              { name: 'Bilal M.', img: 15, date: '1 month ago', text: 'Ordered as an anniversary gift and the packaging was just as stunning as the bedding itself. Worth every rupee.', stars: 5 },
+              {
+                  name: 'Zara H.',
+                  img: 44,
+                  date: '2 months ago',
+                  text: 'Breathable and keeps us cool through humid nights. Pillow covers fit our memory foam pillows nicely. Highly recommended.',
+                  stars: 5
+              }
+          ]
               .map(
-                  (pct, i) => `
-            <div class="flex items-center gap-3 text-xs">
-              <span class="w-8 text-ink-800/60 font-medium">${5 - i}★</span>
-              <div class="rating-bar flex-1"><div style="width:${pct}%"></div></div>
-              <span class="w-10 text-right text-ink-800/50">${pct}%</span>
+                  r => `
+            <div class="bg-white rounded-2xl p-4 sm:p-5 border border-sage-100 shadow-xs">
+              <div class="flex items-start gap-3 mb-3">
+                <img src="https://i.pravatar.cc/80?img=${r.img}" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover shrink-0" alt="${r.name}">
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-1.5 flex-wrap">
+                    <span class="text-xs sm:text-sm font-bold text-ink-900">${r.name}</span>
+                    <i data-lucide="badge-check" class="w-3.5 h-3.5 text-sage-600 shrink-0"></i>
+                    <span class="text-[10px] text-sage-700 bg-sage-100 px-1.5 py-0.5 rounded-full font-medium">Verified</span>
+                  </div>
+                  <div class="text-[11px] text-ink-800/45 mt-0.5">${r.date}</div>
+                </div>
+                <div class="text-gold-500 text-[11px] shrink-0">${'★'.repeat(r.stars)}</div>
+              </div>
+              <p class="text-xs sm:text-sm text-ink-800/70 leading-relaxed">${r.text}</p>
             </div>
           `
               )
               .join('')}
         </div>
-        <button onclick="showToast('Review submitted for verification!')" class="w-full mt-6 border-[1.5px] border-sage-200 text-ink-800 py-3 rounded-full text-xs font-semibold hover:bg-sage-50 transition">
-          Write a review
-        </button>
-      </div>
-
-      <div class="lg:col-span-2 space-y-4">
-        ${[
-            {
-                name: 'Fatima A.',
-                img: 40,
-                date: '2 weeks ago',
-                text: 'Absolutely in love with this set! The fabric feels incredibly luxurious and the stitching is flawless. Transformed our master suite.',
-                stars: 5
-            },
-            { name: 'Bilal M.', img: 15, date: '1 month ago', text: 'Ordered as an anniversary gift and the packaging was just as stunning as the bedding itself. Worth every rupee.', stars: 5 },
-            {
-                name: 'Zara H.',
-                img: 44,
-                date: '2 months ago',
-                text: 'Breathable and keeps us cool through humid nights. Pillow covers fit our memory foam pillows nicely. Highly recommended.',
-                stars: 5
-            }
-        ]
-            .map(
-                r => `
-          <div class="bg-white rounded-3xl p-6 border border-sage-100 shadow-sm">
-            <div class="flex items-center gap-3 mb-3">
-              <img src="https://i.pravatar.cc/80?img=${r.img}" class="w-10 h-10 rounded-full object-cover" alt="${r.name}">
-              <div class="flex-1">
-                <div class="flex items-center gap-2">
-                  <span class="text-sm font-semibold">${r.name}</span>
-                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-sage-500"></i>
-                  <span class="text-[10px] text-ink-800/45 bg-sage-50 px-2 py-0.5 rounded-full">Verified buyer</span>
-                </div>
-                <div class="text-xs text-ink-800/50">${r.date}</div>
-              </div>
-              <div class="text-gold-500 text-sm">${'★'.repeat(r.stars)}</div>
-            </div>
-            <p class="text-sm text-ink-800/75 leading-relaxed">${r.text}</p>
-          </div>
-        `
-            )
-            .join('')}
       </div>
     </div>
   `;
@@ -1441,21 +1512,21 @@ function initStickyBar(p) {
     if (!bar) {
         bar = document.createElement('div');
         bar.id = 'stickyBar';
-        bar.className = 'sticky-bar';
+        bar.className = 'sticky-bar hidden sm:block';
         bar.innerHTML = `
-      <div class="max-w-7xl mx-auto px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
-        <div class="flex items-center gap-3.5 min-w-0">
-          <div class="w-12 h-12 rounded-xl overflow-hidden bg-sage-100 shrink-0">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-3.5 flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3 min-w-0">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden bg-sage-100 shrink-0">
             <img src="${p.images[0]}" class="w-full h-full object-cover" alt="${p.name}">
           </div>
           <div class="min-w-0">
-            <div class="text-sm font-medium truncate text-ink-900">${p.name}</div>
-            <div class="text-xs font-semibold text-sage-700">Rs. ${p.price.toLocaleString()}</div>
+            <div class="text-xs sm:text-sm font-semibold truncate text-ink-900">${p.name}</div>
+            <div class="text-[11px] sm:text-xs font-bold text-sage-700">Rs. ${p.price.toLocaleString()}</div>
           </div>
         </div>
         <button onclick="addToCart(${p.id}, currentDetailQty, selectedDetailSize, selectedDetailColor)"
-          class="bg-sage-800 text-cream-100 px-6 py-2.5 rounded-full text-xs font-semibold hover:bg-sage-700 transition-all flex items-center gap-2 shrink-0">
-          <i data-lucide="shopping-bag" class="w-4 h-4"></i> Add to cart
+          class="bg-sage-800 text-cream-100 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs font-semibold hover:bg-sage-700 transition-all flex items-center gap-1.5 shrink-0 active:scale-95">
+          <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i> Add to Bag
         </button>
       </div>
     `;
@@ -1464,7 +1535,12 @@ function initStickyBar(p) {
     }
 
     const scrollHandler = () => {
-        if (window.scrollY > 450) {
+        // On desktop only — mobile has inline CTA buttons
+        if (window.innerWidth < 640) {
+            bar.classList.remove('show');
+            return;
+        }
+        if (window.scrollY > 420) {
             bar.classList.add('show');
         } else {
             bar.classList.remove('show');
