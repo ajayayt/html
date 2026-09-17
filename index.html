@@ -1,1519 +1,685 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PARADISE HOME — Quiet Luxury Bedding</title>
 
-<!-- Tailwind -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        fontFamily: { sans:['Inter','sans-serif'], display:['"Playfair Display"','serif'], hand:['"Caveat"','cursive'] },
-        colors: {
-          sage: { 50:'#f4f6f0',100:'#e6ebdd',200:'#cdd8bd',300:'#a9bd92',400:'#849c6b',500:'#667e4d',600:'#4f643c',700:'#3f5030',800:'#354228',900:'#2d3823' },
-          terra:{ 50:'#fdf5f1',100:'#fae6dc',200:'#f4c9b4',300:'#eba285',400:'#e07a55',500:'#d15a35',600:'#bd4425',700:'#9d351f',800:'#802f1e',900:'#6b2b1d' },
-          cream:{ 50:'#fdfbf7',100:'#faf5eb',200:'#f3e8d3',300:'#e8d5b0' },
-          gold: { 400:'#d4b370',500:'#c19a4d',600:'#a67f3a' },
-          ink:  { 700:'#3a352a',800:'#2a261c',900:'#1a1811' },
-        },
-        animation: {
-          'fade-up':'fadeUp .7s cubic-bezier(.22,1,.36,1) both',
-          'fade-in':'fadeIn .5s ease both',
-          'float':'float 7s ease-in-out infinite',
-          'spin-slow':'spin 20s linear infinite',
-        },
-        keyframes: {
-          fadeUp:{'0%':{opacity:0,transform:'translateY(24px)'},'100%':{opacity:1,transform:'translateY(0)'}},
-          fadeIn:{'0%':{opacity:0},'100%':{opacity:1}},
-          float:{'0%,100%':{transform:'translateY(0) rotate(0)'},'50%':{transform:'translateY(-12px) rotate(2deg)'}},
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PARADISE HOME — Quiet Luxury Bedding & Home Textiles</title>
+  <meta name="description"
+    content="Quilted bedding, antique embroidery, and heirloom-quality sets — thoughtfully crafted for everyday indulgence.">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['"Playfair Display"', 'serif'],
+            hand: ['"Caveat"', 'cursive']
+          },
+          colors: {
+            sage: { 50: '#f4f6f0', 100: '#e6ebdd', 200: '#cdd8bd', 300: '#a9bd92', 400: '#849c6b', 500: '#667e4d', 600: '#4f643c', 700: '#3f5030', 800: '#354228', 900: '#2d3823' },
+            terra: { 50: '#fdf5f1', 100: '#fae6dc', 200: '#f4c9b4', 300: '#eba285', 400: '#e07a55', 500: '#d15a35', 600: '#bd4425', 700: '#9d351f', 800: '#802f1e', 900: '#6b2b1d' },
+            cream: { 50: '#fdfbf7', 100: '#faf5eb', 200: '#f3e8d3', 300: '#e8d5b0' },
+            gold: { 400: '#d4b370', 500: '#c19a4d', 600: '#a67f3a' },
+            ink: { 700: '#3a352a', 800: '#2a261c', 900: '#1a1811' },
+          }
         }
       }
     }
-  }
-</script>
+  </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap"
+    rel="stylesheet">
 
-<!-- Plugins -->
-<script src="https://unpkg.com/lucide@latest"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- Swiper & Lucide -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-<style>
-  html { scroll-behavior: smooth; }
-  body { background:#fdfbf7; }
+  <!-- Custom Luxury Stylesheet -->
+  <link rel="stylesheet" href="assets/css/styles.css">
 
-  ::-webkit-scrollbar { width: 10px; }
-  ::-webkit-scrollbar-track { background:#faf5eb; }
-  ::-webkit-scrollbar-thumb { background:#a9bd92; border-radius:10px; }
-  ::-webkit-scrollbar-thumb:hover { background:#667e4d; }
-
-  .reveal { opacity:0; transform: translateY(36px); transition: all 1s cubic-bezier(.22,1,.36,1); }
-  .reveal.in { opacity:1; transform: translateY(0); }
-
-  .zoom-img { transition: transform 1s cubic-bezier(.22,1,.36,1); }
-  .group:hover .zoom-img { transform: scale(1.08); }
-
-  .grad-text {
-    background: linear-gradient(120deg,#667e4d 0%,#c19a4d 40%,#d15a35 70%,#667e4d 100%);
-    background-size: 200% auto;
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-    animation: shine 6s linear infinite;
-  }
-  @keyframes shine { to { background-position: 200% center; } }
-
-  @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-  .marquee { animation: marquee 32s linear infinite; }
-
-  /* HERO */
-  .heroSwiper { height: 680px; }
-  @media(max-width:768px){ .heroSwiper { height: 560px; } }
-  .heroSwiper .swiper-slide-active img { transform: scale(1.1); }
-  .heroSwiper .swiper-slide img { transition: transform 9s ease-out; }
-  .heroSwiper .swiper-pagination-bullet { background:#fff !important; opacity:.35; width: 8px; height: 8px; }
-  .heroSwiper .swiper-pagination-bullet-active { opacity:1 !important; width: 40px !important; border-radius: 4px !important; }
-
-  /* SWIPER NAV */
-  .swiper-button-next, .swiper-button-prev {
-    color: #1a1811 !important; background: rgba(253,251,247,.96);
-    width: 52px !important; height: 52px !important; border-radius: 50%;
-    box-shadow: 0 10px 30px -10px rgba(0,0,0,.25); transition: all .3s;
-  }
-  .swiper-button-next:hover, .swiper-button-prev:hover { background:#1a1811; color:#fdfbf7 !important; transform: scale(1.05); }
-  .swiper-button-next::after, .swiper-button-prev::after { font-size: 18px !important; font-weight: bold; }
-  .productSwiper .swiper-pagination-bullet { background:#667e4d !important; opacity:.3; }
-  .productSwiper .swiper-pagination-bullet-active { opacity:1 !important; width:32px !important; border-radius:4px !important; }
-
-  /* Dual image hover */
-  .card-img-wrap { position: relative; }
-  .card-img-primary, .card-img-secondary {
-    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-    transition: opacity .7s ease, transform 1s cubic-bezier(.22,1,.36,1);
-  }
-  .card-img-secondary { opacity: 0; }
-  .group:hover .card-img-primary { opacity: 0; transform: scale(1.1); }
-  .group:hover .card-img-secondary { opacity: 1; transform: scale(1.05); }
-
-  .line-clamp-2 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-  .line-clamp-3 { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
-
-  @keyframes bump { 0%,100%{transform:scale(1)} 40%{transform:scale(1.4)} }
-  .bump { animation: bump .4s ease; }
-
-  /* LIGHTBOX MODAL */
-  .lightbox {
-    position: fixed; inset: 0; z-index: 9999;
-    background: rgba(15,14,10,.96); backdrop-filter: blur(20px);
-    display: none; align-items: center; justify-content: center;
-    padding: 20px; opacity: 0; transition: opacity .4s ease;
-  }
-  .lightbox.show { display: flex; opacity: 1; }
-  .lightbox img {
-    max-width: 90vw; max-height: 85vh; object-fit: contain;
-    border-radius: 20px; box-shadow: 0 30px 80px rgba(0,0,0,.6);
-    animation: zoomIn .5s cubic-bezier(.22,1,.36,1);
-  }
-  @keyframes zoomIn { from { opacity:0; transform:scale(.88); } to { opacity:1; transform:scale(1); } }
-  .lightbox-close {
-    position: absolute; top: 24px; right: 24px;
-    width: 52px; height: 52px; border-radius: 50%;
-    background: rgba(255,255,255,.1); backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,.2);
-    color: #fff; display: flex; align-items: center; justify-content: center;
-    cursor: pointer; transition: all .3s;
-  }
-  .lightbox-close:hover { background: #d15a35; transform: rotate(90deg); }
-  .lightbox-nav {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    width: 56px; height: 56px; border-radius: 50%;
-    background: rgba(255,255,255,.1); backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,.2);
-    color: #fff; display: flex; align-items: center; justify-content: center;
-    cursor: pointer; transition: all .3s;
-  }
-  .lightbox-nav:hover { background: rgba(255,255,255,.25); }
-  .lightbox-nav.prev { left: 24px; }
-  .lightbox-nav.next { right: 24px; }
-  .lightbox-counter {
-    position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-    background: rgba(255,255,255,.1); backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,.2);
-    padding: 8px 20px; border-radius: 30px; color: #fff;
-    font-size: 13px; font-weight: 500; letter-spacing: .05em;
-  }
-
-  /* MEDIUM ZOOM cursor */
-  .cursor-zoom { cursor: zoom-in; }
-
-  /* Sticky add to cart bar */
-  .sticky-bar {
-    position: fixed; bottom: 0; left: 0; right: 0; z-index: 90;
-    background: rgba(253,251,247,.97); backdrop-filter: blur(20px);
-    border-top: 1px solid #e6ebdd;
-    transform: translateY(100%); transition: transform .5s cubic-bezier(.22,1,.36,1);
-  }
-  .sticky-bar.show { transform: translateY(0); }
-
-  /* Rating bar */
-  .rating-bar { background: #f3e8d3; height: 6px; border-radius: 3px; overflow: hidden; }
-  .rating-bar > div { height: 100%; background: #c19a4d; border-radius: 3px; transition: width .6s ease; }
-
-  /* Premium badge shine */
-  @keyframes shineSweep { 0%{transform:translateX(-100%)} 100%{transform:translateX(200%)} }
-  .shine-sweep::after {
-    content:''; position:absolute; top:0; left:0; width:50%; height:100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,.5), transparent);
-    animation: shineSweep 3s infinite;
-  }
-
-  @media(max-width:768px){ .lightbox-nav.prev{left:10px} .lightbox-nav.next{right:10px} }
-</style>
+  <!-- Core App Logic -->
+  <script src="assets/js/app.js" defer></script>
 </head>
 
-<body class="font-sans text-ink-800 antialiased overflow-x-hidden">
+<body data-page="home" class="font-sans text-ink-800 bg-cream-50 antialiased overflow-x-hidden">
 
-<!-- ═══════ MARQUEE ═══════ -->
-<div class="bg-ink-900 text-cream-100 text-[11px] tracking-[.18em] py-2.5 overflow-hidden">
-  <div class="flex whitespace-nowrap marquee">
-    <div class="flex shrink-0">
-      <span class="mx-8">✦ FREE SHIPPING OVER RS. 5,000</span>
-      <span class="mx-8">✦ 10% OFF YOUR FIRST ORDER</span>
-      <span class="mx-8">✦ HANDCRAFTED IN PAKISTAN</span>
-      <span class="mx-8">✦ 30-DAY RETURNS</span>
-      <span class="mx-8">✦ 4.9★ RATED BY 2,400+ CUSTOMERS</span>
-    </div>
-    <div class="flex shrink-0" aria-hidden="true">
-      <span class="mx-8">✦ FREE SHIPPING OVER RS. 5,000</span>
-      <span class="mx-8">✦ 10% OFF YOUR FIRST ORDER</span>
-      <span class="mx-8">✦ HANDCRAFTED IN PAKISTAN</span>
-      <span class="mx-8">✦ 30-DAY RETURNS</span>
-      <span class="mx-8">✦ 4.9★ RATED BY 2,400+ CUSTOMERS</span>
+  <!-- ═══════ ANNOUNCEMENT MARQUEE ═══════ -->
+  <div class="bg-ink-900 text-cream-100 text-[11px] tracking-[.18em] py-2.5 overflow-hidden border-b border-ink-800">
+    <div class="flex whitespace-nowrap marquee-track">
+      <div class="flex shrink-0">
+        <span class="mx-7">✦ FREE SHIPPING OVER RS. 5,000</span>
+        <span class="mx-7">✦ 10% OFF YOUR FIRST ORDER</span>
+        <span class="mx-7">✦ HANDCRAFTED HEIRLOOM TEXTILES</span>
+        <span class="mx-7">✦ 30-DAY SATISFACTION GUARANTEE</span>
+        <span class="mx-7">✦ 4.9★ RATED BY 2,400+ VERIFIED HOMES</span>
+      </div>
+      <div class="flex shrink-0" aria-hidden="true">
+        <span class="mx-7">✦ FREE SHIPPING OVER RS. 5,000</span>
+        <span class="mx-7">✦ 10% OFF YOUR FIRST ORDER</span>
+        <span class="mx-7">✦ HANDCRAFTED HEIRLOOM TEXTILES</span>
+        <span class="mx-7">✦ 30-DAY SATISFACTION GUARANTEE</span>
+        <span class="mx-7">✦ 4.9★ RATED BY 2,400+ VERIFIED HOMES</span>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- ═══════ HEADER ═══════ -->
-<header class="sticky top-0 z-50 bg-cream-50/85 backdrop-blur-xl border-b border-sage-100">
-  <nav class="max-w-7xl mx-auto px-6 lg:px-8 h-[76px] flex items-center justify-between gap-4">
-    <a onclick="go('home')" class="cursor-pointer group flex items-center gap-2.5 shrink-0">
-      <div class="w-10 h-10 rounded-full bg-gradient-to-br from-sage-700 to-sage-900 flex items-center justify-center group-hover:rotate-12 transition-transform duration-500 shadow-md">
-        <i data-lucide="feather" class="w-4 h-4 text-gold-400"></i>
-      </div>
-      <div class="leading-none">
-        <div class="font-display text-[21px] font-semibold tracking-tight">PARADISE<span class="text-terra-500 font-normal text-[16px]">home</span></div>
-        <div class="text-[9px] tracking-[.28em] text-sage-600 font-medium mt-0.5">LUXURY BEDDING</div>
-      </div>
-    </a>
-
-    <div class="hidden lg:flex items-center gap-8 text-[13px] font-medium">
-      <a onclick="go('home')" class="cursor-pointer hover:text-sage-600 transition-colors relative group">
-        Home <span class="absolute -bottom-1 left-0 w-0 h-px bg-sage-600 group-hover:w-full transition-all"></span>
+  <!-- ═══════ LUXURY STICKY HEADER ═══════ -->
+  <header
+    class="sticky top-0 z-50 bg-cream-50/90 backdrop-blur-xl border-b border-sage-100 transition-all duration-300">
+    <nav class="max-w-7xl mx-auto px-5 lg:px-8 h-[74px] flex items-center justify-between gap-4">
+      <!-- Brand Logo -->
+      <a href="index.html" class="group flex items-center gap-2.5 shrink-0" aria-label="Paradise Home">
+        <div
+          class="w-10 h-10 rounded-full bg-gradient-to-br from-sage-700 to-sage-900 flex items-center justify-center group-hover:rotate-12 transition-transform duration-500 shadow-md">
+          <i data-lucide="feather" class="w-4 h-4 text-gold-400"></i>
+        </div>
+        <div class="leading-none">
+          <div class="font-display text-[21px] font-semibold tracking-tight text-ink-900">
+            PARADISE<span class="text-terra-500 font-normal text-[16px]">home</span>
+          </div>
+          <div class="text-[9px] tracking-[.28em] text-sage-600 font-medium mt-0.5">QUIET LUXURY</div>
+        </div>
       </a>
-      <a onclick="go('shop')" class="cursor-pointer hover:text-sage-600 transition-colors relative group">
-        Shop All <span class="absolute -bottom-1 left-0 w-0 h-px bg-sage-600 group-hover:w-full transition-all"></span>
-      </a>
-      <a onclick="go('shop','bedding')" class="cursor-pointer hover:text-sage-600 transition-colors relative group">
-        Bedding <span class="absolute -bottom-1 left-0 w-0 h-px bg-sage-600 group-hover:w-full transition-all"></span>
-      </a>
-      <a onclick="go('shop','accessories')" class="cursor-pointer hover:text-sage-600 transition-colors relative group">
-        Accessories <span class="absolute -bottom-1 left-0 w-0 h-px bg-sage-600 group-hover:w-full transition-all"></span>
-      </a>
-      <a onclick="go('shop','new')" class="cursor-pointer hover:text-sage-600 transition-colors relative group">
-        New In <span class="absolute -bottom-1 left-0 w-0 h-px bg-sage-600 group-hover:w-full transition-all"></span>
-      </a>
-      <a onclick="go('shop','sale')" class="cursor-pointer text-terra-500 font-semibold hover:text-terra-600 transition-colors flex items-center gap-1">
-        <span class="w-1.5 h-1.5 rounded-full bg-terra-500 animate-pulse"></span> Sale
-      </a>
-    </div>
 
-    <div class="flex items-center gap-1">
-      <button onclick="openSearch()" class="p-2.5 rounded-full hover:bg-sage-100 transition-colors" title="Search"><i data-lucide="search" class="w-[19px] h-[19px]"></i></button>
-      <button onclick="go('wishlist')" class="relative p-2.5 rounded-full hover:bg-sage-100 transition-colors" title="Wishlist">
-        <i data-lucide="heart" class="w-[19px] h-[19px]"></i>
-        <span id="wishCount" class="absolute -top-0.5 -right-0.5 bg-terra-500 text-white text-[10px] font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">0</span>
-      </button>
-      <button class="p-2.5 rounded-full hover:bg-sage-100 transition-colors" onclick="go('account')" title="Account"><i data-lucide="user" class="w-[19px] h-[19px]"></i></button>
-      <button class="relative p-2.5 rounded-full hover:bg-sage-100 transition-colors" onclick="go('cart')" title="Cart">
-        <i data-lucide="shopping-bag" class="w-[19px] h-[19px]"></i>
-        <span id="cartCount" class="absolute -top-0.5 -right-0.5 bg-sage-700 text-white text-[10px] font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">0</span>
-      </button>
-      <button class="lg:hidden p-2.5" onclick="toggleMenu()"><i data-lucide="menu" class="w-5 h-5"></i></button>
-    </div>
-  </nav>
-  <div id="mobileMenu" class="lg:hidden hidden border-t border-sage-100 bg-cream-50">
-    <div class="px-6 py-4 flex flex-col gap-1 text-sm font-medium">
-      <a onclick="go('home')" class="py-3 border-b border-sage-100 cursor-pointer">Home</a>
-      <a onclick="go('shop')" class="py-3 border-b border-sage-100 cursor-pointer">Shop All</a>
-      <a onclick="go('shop','bedding')" class="py-3 border-b border-sage-100 cursor-pointer">Bedding</a>
-      <a onclick="go('shop','accessories')" class="py-3 border-b border-sage-100 cursor-pointer">Accessories</a>
-      <a onclick="go('shop','new')" class="py-3 border-b border-sage-100 cursor-pointer">New In</a>
-      <a onclick="go('shop','sale')" class="py-3 text-terra-500 cursor-pointer font-semibold">Sale</a>
-    </div>
-  </div>
-</header>
+      <!-- Desktop Nav Links -->
+      <div class="hidden lg:flex items-center gap-8 text-[13px] font-medium text-ink-800">
+        <a href="index.html" class="text-sage-700 font-semibold relative group py-1">
+          Home
+          <span class="absolute bottom-0 left-0 w-full h-[2px] bg-sage-700 rounded-full"></span>
+        </a>
+        <a href="pages/shop.html" class="hover:text-sage-700 transition-colors relative group py-1">
+          Shop All
+          <span
+            class="absolute bottom-0 left-0 w-0 h-[2px] bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="pages/shop.html#bedding" class="hover:text-sage-700 transition-colors relative group py-1">
+          Bedding Sets
+          <span
+            class="absolute bottom-0 left-0 w-0 h-[2px] bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="pages/shop.html#accessories" class="hover:text-sage-700 transition-colors relative group py-1">
+          Accessories
+          <span
+            class="absolute bottom-0 left-0 w-0 h-[2px] bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="pages/about.html" class="hover:text-sage-700 transition-colors relative group py-1">
+          Our Story
+          <span
+            class="absolute bottom-0 left-0 w-0 h-[2px] bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="pages/contact.html" class="hover:text-sage-700 transition-colors relative group py-1">
+          Contact
+          <span
+            class="absolute bottom-0 left-0 w-0 h-[2px] bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="pages/shop.html#sale"
+          class="text-terra-500 font-semibold hover:text-terra-600 transition-colors flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-terra-500 animate-pulse"></span> Sale
+        </a>
+      </div>
 
-<!-- ═══════ SEARCH ═══════ -->
-<div id="searchOverlay" class="fixed inset-0 z-[100] bg-ink-900/50 backdrop-blur-md hidden items-start justify-center pt-24 px-4">
-  <div class="w-full max-w-2xl bg-cream-50 rounded-3xl shadow-2xl overflow-hidden animate-fade-up">
-    <div class="flex items-center gap-3 px-6 py-5 border-b border-sage-100">
-      <i data-lucide="search" class="w-5 h-5 text-sage-600"></i>
-      <input id="searchInput" type="text" placeholder="Search for bedding, cushions, throws..." class="flex-1 bg-transparent outline-none text-base placeholder-ink-800/40">
-      <button onclick="closeSearch()" class="p-2 hover:bg-sage-100 rounded-full transition"><i data-lucide="x" class="w-5 h-5"></i></button>
-    </div>
-    <div id="searchResults" class="max-h-96 overflow-y-auto p-3"></div>
-  </div>
-</div>
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-1 sm:gap-2">
+        <button onclick="openSearch()" class="p-2.5 rounded-full hover:bg-sage-100 text-ink-800 transition-colors"
+          title="Search catalog" aria-label="Search">
+          <i data-lucide="search" class="w-[19px] h-[19px]"></i>
+        </button>
 
-<!-- ═══════ HOME ═══════ -->
-<main id="page-home" class="page">
+        <a href="pages/shop.html#saved" onclick="showToast('Click heart on any product to save it')"
+          class="relative p-2.5 rounded-full hover:bg-sage-100 text-ink-800 transition-colors" title="Wishlist"
+          aria-label="Wishlist">
+          <i data-lucide="heart" class="w-[19px] h-[19px]"></i>
+          <span data-wish-count
+            class="absolute -top-0.5 -right-0.5 bg-terra-500 text-white text-[10px] font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">0</span>
+        </a>
 
-  <!-- HERO BANNER -->
-  <section class="relative">
-    <div class="swiper heroSwiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide relative">
-          <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1920&q=80" alt="" class="absolute inset-0 w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-r from-ink-900/85 via-ink-900/50 to-transparent"></div>
-          <div class="relative h-full max-w-7xl mx-auto px-6 lg:px-8 flex items-center">
-            <div class="max-w-xl text-cream-100 animate-fade-up">
-              <div class="inline-flex items-center gap-2 bg-cream-100/15 backdrop-blur border border-cream-100/25 text-[11px] font-semibold tracking-[.18em] uppercase px-4 py-2 rounded-full mb-6">
-                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-gold-400"></i> Autumn Collection 2025
-              </div>
-              <h1 class="font-display text-5xl lg:text-[78px] font-semibold leading-[1.02] mb-6">
-                Sleep in<br><span class="italic text-sage-300">quiet luxury</span>
-              </h1>
-              <p class="text-lg text-cream-100/85 mb-9 max-w-lg leading-relaxed">
-                Quilted bedding, antique embroidery, and heirloom-quality sets — thoughtfully crafted for everyday indulgence.
-              </p>
-              <div class="flex flex-wrap gap-4 mb-10">
-                <button onclick="go('shop')" class="group inline-flex items-center gap-3 bg-cream-100 text-ink-900 px-8 py-4 rounded-full text-sm font-semibold hover:bg-white transition-all hover:-translate-y-0.5 hover:shadow-2xl">
-                  Shop the collection <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                </button>
-                <button onclick="go('shop','bedding')" class="inline-flex items-center gap-3 border-[1.5px] border-cream-100/40 text-cream-100 px-8 py-4 rounded-full text-sm font-medium hover:bg-cream-100 hover:text-ink-900 transition-all">
-                  Explore bedding
-                </button>
-              </div>
-              <div class="flex items-center gap-5 text-xs text-cream-100/70">
-                <div class="flex items-center gap-2"><i data-lucide="truck" class="w-4 h-4"></i> Free shipping over Rs. 5,000</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <a href="pages/cart.html" class="relative p-2.5 rounded-full hover:bg-sage-100 text-ink-800 transition-colors"
+          title="Shopping Bag" aria-label="Cart">
+          <i data-lucide="shopping-bag" class="w-[19px] h-[19px]"></i>
+          <span data-cart-count
+            class="absolute -top-0.5 -right-0.5 bg-sage-800 text-white text-[10px] font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">0</span>
+        </a>
 
-        <div class="swiper-slide relative">
-          <img src="https://images.unsplash.com/photo-1616627561950-9f746e330187?w=1920&q=80" alt="" class="absolute inset-0 w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-r from-ink-900/85 via-ink-900/50 to-transparent"></div>
-          <div class="relative h-full max-w-7xl mx-auto px-6 lg:px-8 flex items-center">
-            <div class="max-w-xl text-cream-100">
-              <div class="inline-flex items-center gap-2 bg-terra-500 text-white text-[11px] font-semibold tracking-[.18em] uppercase px-4 py-2 rounded-full mb-6">
-                <i data-lucide="tag" class="w-3.5 h-3.5"></i> Limited Time · Up to 30% Off
-              </div>
-              <h1 class="font-display text-5xl lg:text-[78px] font-semibold leading-[1.02] mb-6">
-                Sale of the<br><span class="italic text-terra-300">season</span>
-              </h1>
-              <p class="text-lg text-cream-100/85 mb-9 max-w-lg leading-relaxed">
-                Handpicked luxury bedding and accessories at prices you'll love. Ends soon.
-              </p>
-              <button onclick="go('shop','sale')" class="group inline-flex items-center gap-3 bg-terra-500 text-white px-8 py-4 rounded-full text-sm font-semibold hover:bg-terra-600 transition-all hover:-translate-y-0.5 hover:shadow-2xl">
-                Shop the sale <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide relative">
-          <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=1920&q=80" alt="" class="absolute inset-0 w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-r from-ink-900/85 via-ink-900/50 to-transparent"></div>
-          <div class="relative h-full max-w-7xl mx-auto px-6 lg:px-8 flex items-center">
-            <div class="max-w-xl text-cream-100">
-              <div class="inline-flex items-center gap-2 bg-cream-100/15 backdrop-blur border border-cream-100/25 text-[11px] font-semibold tracking-[.18em] uppercase px-4 py-2 rounded-full mb-6">
-                <i data-lucide="award" class="w-3.5 h-3.5 text-gold-400"></i> New Arrivals
-              </div>
-              <h1 class="font-display text-5xl lg:text-[78px] font-semibold leading-[1.02] mb-6">
-                The ultimate<br><span class="italic text-sage-300">bedding set</span>
-              </h1>
-              <p class="text-lg text-cream-100/85 mb-9 max-w-lg leading-relaxed">
-                Five pieces. One perfect night's sleep. Crafted with care, loved by thousands.
-              </p>
-              <button onclick="go('shop','new')" class="group inline-flex items-center gap-3 bg-cream-100 text-ink-900 px-8 py-4 rounded-full text-sm font-semibold hover:bg-white transition-all hover:-translate-y-0.5 hover:shadow-2xl">
-                Discover new in <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="swiper-pagination !bottom-8"></div>
-    </div>
-    <button class="hero-prev absolute left-4 lg:left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-cream-100/20 backdrop-blur border border-cream-100/30 flex items-center justify-center text-cream-100 hover:bg-cream-100 hover:text-ink-900 transition-all"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
-    <button class="hero-next absolute right-4 lg:right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-cream-100/20 backdrop-blur border border-cream-100/30 flex items-center justify-center text-cream-100 hover:bg-cream-100 hover:text-ink-900 transition-all"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
-  </section>
-
-  <!-- TRUST STRIP -->
-  <section class="border-b border-sage-100 bg-sage-50">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-9 grid grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="flex items-center gap-3.5 justify-center lg:justify-start">
-        <div class="w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-sm"><i data-lucide="truck" class="w-5 h-5 text-sage-600"></i></div>
-        <div class="text-sm"><div class="font-semibold text-ink-800">Free Shipping</div><div class="text-xs text-ink-800/55">Over Rs. 5,000</div></div>
-      </div>
-      <div class="flex items-center gap-3.5 justify-center lg:justify-start">
-        <div class="w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-sm"><i data-lucide="rotate-ccw" class="w-5 h-5 text-sage-600"></i></div>
-        <div class="text-sm"><div class="font-semibold text-ink-800">30-Day Returns</div><div class="text-xs text-ink-800/55">No questions</div></div>
-      </div>
-      <div class="flex items-center gap-3.5 justify-center lg:justify-start">
-        <div class="w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-sm"><i data-lucide="shield-check" class="w-5 h-5 text-sage-600"></i></div>
-        <div class="text-sm"><div class="font-semibold text-ink-800">Secure Payment</div><div class="text-xs text-ink-800/55">100% protected</div></div>
-      </div>
-      <div class="flex items-center gap-3.5 justify-center lg:justify-start">
-        <div class="w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-sm"><i data-lucide="headphones" class="w-5 h-5 text-sage-600"></i></div>
-        <div class="text-sm"><div class="font-semibold text-ink-800">24/7 Support</div><div class="text-xs text-ink-800/55">Always here</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CATEGORIES -->
-  <section class="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-24">
-    <div class="reveal text-center mb-14">
-      <div class="inline-flex items-center gap-2 text-terra-500 text-[11px] font-semibold tracking-[.2em] uppercase mb-4">
-        <span class="w-8 h-px bg-terra-500"></span> Browse by category <span class="w-8 h-px bg-terra-500"></span>
-      </div>
-      <h2 class="font-display text-4xl lg:text-6xl font-semibold tracking-tight">Shop our collections</h2>
-      <p class="text-ink-800/60 mt-4 max-w-xl mx-auto">Explore handcrafted pieces designed to transform your home into a sanctuary.</p>
-    </div>
-    <div class="grid md:grid-cols-3 gap-5">
-      <div onclick="go('shop','bedding')" class="reveal group relative overflow-hidden rounded-[32px] aspect-[4/5] cursor-pointer shadow-lg hover:shadow-2xl transition-shadow duration-500">
-        <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&q=80" class="w-full h-full object-cover zoom-img" alt="">
-        <div class="absolute inset-0 bg-gradient-to-t from-ink-900/90 via-ink-900/40 to-transparent"></div>
-        <div class="absolute top-6 left-6 bg-cream-100/15 backdrop-blur border border-cream-100/25 text-cream-100 text-[10px] font-semibold tracking-[.2em] uppercase px-3 py-1.5 rounded-full">4 Products</div>
-        <div class="absolute bottom-0 left-0 right-0 p-8 text-cream-100">
-          <h3 class="font-display text-3xl font-semibold mb-2">Bedding Sets</h3>
-          <p class="text-cream-100/75 text-sm mb-4">Quilted, embroidered & luxe</p>
-          <div class="inline-flex items-center gap-2 text-sm font-semibold group-hover:gap-3 transition-all">
-            Shop now <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          </div>
-        </div>
-      </div>
-      <div onclick="go('shop','accessories')" class="reveal group relative overflow-hidden rounded-[32px] aspect-[4/5] cursor-pointer shadow-lg hover:shadow-2xl transition-shadow duration-500" style="transition-delay:.1s">
-        <img src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=800&q=80" class="w-full h-full object-cover zoom-img" alt="">
-        <div class="absolute inset-0 bg-gradient-to-t from-ink-900/90 via-ink-900/40 to-transparent"></div>
-        <div class="absolute top-6 left-6 bg-cream-100/15 backdrop-blur border border-cream-100/25 text-cream-100 text-[10px] font-semibold tracking-[.2em] uppercase px-3 py-1.5 rounded-full">4 Products</div>
-        <div class="absolute bottom-0 left-0 right-0 p-8 text-cream-100">
-          <h3 class="font-display text-3xl font-semibold mb-2">Accessories</h3>
-          <p class="text-cream-100/75 text-sm mb-4">Cushions, throws & towels</p>
-          <div class="inline-flex items-center gap-2 text-sm font-semibold group-hover:gap-3 transition-all">
-            Shop now <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          </div>
-        </div>
-      </div>
-      <div onclick="go('shop','new')" class="reveal group relative overflow-hidden rounded-[32px] aspect-[4/5] cursor-pointer shadow-lg hover:shadow-2xl transition-shadow duration-500" style="transition-delay:.2s">
-        <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=800&q=80" class="w-full h-full object-cover zoom-img" alt="">
-        <div class="absolute inset-0 bg-gradient-to-t from-ink-900/90 via-ink-900/40 to-transparent"></div>
-        <div class="absolute top-6 left-6 bg-terra-500 text-white text-[10px] font-semibold tracking-[.2em] uppercase px-3 py-1.5 rounded-full shine-sweep overflow-hidden relative">Just Arrived</div>
-        <div class="absolute bottom-0 left-0 right-0 p-8 text-cream-100">
-          <h3 class="font-display text-3xl font-semibold mb-2">New Arrivals</h3>
-          <p class="text-cream-100/75 text-sm mb-4">Fresh from the workshop</p>
-          <div class="inline-flex items-center gap-2 text-sm font-semibold group-hover:gap-3 transition-all">
-            Shop now <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BESTSELLERS -->
-  <section class="bg-cream-100 border-y border-sage-100 py-20 lg:py-28">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <div class="reveal flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-14">
-        <div>
-          <div class="inline-flex items-center gap-2 text-terra-500 text-[11px] font-semibold tracking-[.2em] uppercase mb-4">
-            <span class="w-8 h-px bg-terra-500"></span> Bestsellers
-          </div>
-          <h2 class="font-display text-4xl lg:text-5xl font-semibold tracking-tight">Loved by our customers</h2>
-          <p class="text-ink-800/60 mt-3 max-w-md">The pieces our community can't stop talking about — tried, tested and treasured.</p>
-        </div>
-        <button onclick="go('shop')" class="group self-start lg:self-auto inline-flex items-center gap-2 text-sm font-medium text-sage-700 hover:text-ink-900 transition-colors">
-          View all products <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+        <!-- Mobile Menu Trigger -->
+        <button class="lg:hidden p-2.5 rounded-full hover:bg-sage-100 text-ink-800 transition-colors ml-1"
+          onclick="toggleMobileMenu()" aria-label="Toggle menu">
+          <i data-lucide="menu" class="w-5 h-5"></i>
         </button>
       </div>
+    </nav>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobileMenu"
+      class="lg:hidden hidden border-t border-sage-100 bg-cream-50/98 backdrop-blur-xl animate-fade-in">
+      <div class="px-6 py-4 flex flex-col gap-1 text-sm font-medium">
+        <a href="index.html"
+          class="py-3 border-b border-sage-100 text-sage-700 font-semibold flex items-center justify-between">
+          Home <i data-lucide="chevron-right" class="w-4 h-4 text-sage-400"></i>
+        </a>
+        <a href="pages/shop.html" class="py-3 border-b border-sage-100 flex items-center justify-between">
+          Shop All <i data-lucide="chevron-right" class="w-4 h-4 text-sage-400"></i>
+        </a>
+        <a href="pages/shop.html#bedding" class="py-3 border-b border-sage-100 flex items-center justify-between">
+          Bedding Sets <i data-lucide="chevron-right" class="w-4 h-4 text-sage-400"></i>
+        </a>
+        <a href="pages/shop.html#accessories" class="py-3 border-b border-sage-100 flex items-center justify-between">
+          Accessories <i data-lucide="chevron-right" class="w-4 h-4 text-sage-400"></i>
+        </a>
+        <a href="pages/about.html" class="py-3 border-b border-sage-100 flex items-center justify-between">
+          Our Story <i data-lucide="chevron-right" class="w-4 h-4 text-sage-400"></i>
+        </a>
+        <a href="pages/contact.html" class="py-3 border-b border-sage-100 flex items-center justify-between">
+          Contact Support <i data-lucide="chevron-right" class="w-4 h-4 text-sage-400"></i>
+        </a>
+        <a href="pages/shop.html#sale" class="py-3 text-terra-500 font-semibold flex items-center justify-between">
+          Seasonal Sale <span class="text-xs bg-terra-100 text-terra-700 px-2 py-0.5 rounded-full">Up to 30%</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════ HERO BANNER (RESPONSIVE & BALANCED HEIGHT) ═══════ -->
+  <section class="relative bg-ink-900 overflow-hidden">
+    <div class="swiper hero-slider">
+      <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        <div class="swiper-slide">
+          <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1920&q=85" alt="Luxury layered bed"
+            class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-r from-ink-900/90 via-ink-900/55 to-transparent"></div>
+          <div class="relative h-full max-w-7xl mx-auto px-6 lg:px-8 flex items-center">
+            <div class="max-w-xl text-cream-100 animate-fade-up">
+              <div
+                class="inline-flex items-center gap-2 bg-cream-100/15 backdrop-blur-md border border-cream-100/25 text-[10px] sm:text-[11px] font-semibold tracking-[.18em] uppercase px-3.5 py-1.5 rounded-full mb-4 sm:mb-5">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-gold-400"></i> Autumn Collection 2025
+              </div>
+              <h1
+                class="font-display text-4xl sm:text-5xl lg:text-[64px] font-semibold leading-[1.06] mb-4 sm:mb-5 text-white">
+                Sleep in<br><span class="italic text-sage-300 font-normal">quiet luxury</span>
+              </h1>
+              <p class="text-sm sm:text-base text-cream-100/85 mb-6 sm:mb-8 max-w-lg leading-relaxed">
+                Handcrafted quilted bedding, intricate needlework, and heirloom-quality sets — curated for calming
+                bedrooms.
+              </p>
+              <div class="flex flex-wrap gap-3.5 mb-6">
+                <a href="pages/shop.html"
+                  class="group inline-flex items-center gap-2.5 bg-cream-100 text-ink-900 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full text-xs sm:text-sm font-semibold hover:bg-white transition-all hover:-translate-y-0.5 hover:shadow-xl">
+                  Shop the collection <i data-lucide="arrow-right"
+                    class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="pages/shop.html#bedding"
+                  class="inline-flex items-center gap-2.5 border-[1.5px] border-cream-100/40 text-cream-100 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full text-xs sm:text-sm font-medium hover:bg-cream-100 hover:text-ink-900 transition-all">
+                  Explore Bedding
+                </a>
+              </div>
+              <div class="flex items-center gap-4 text-xs text-cream-100/70">
+                <div class="flex items-center gap-1.5"><i data-lucide="truck" class="w-3.5 h-3.5 text-gold-400"></i>
+                  Free shipping over Rs. 5,000</div>
+                <div class="flex items-center gap-1.5"><i data-lucide="shield-check"
+                    class="w-3.5 h-3.5 text-sage-300"></i> 30-day trial</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="swiper-slide">
+          <img src="https://images.unsplash.com/photo-1616627561950-9f746e330187?w=1920&q=85"
+            alt="Romantic quilted bedding" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-r from-ink-900/90 via-ink-900/55 to-transparent"></div>
+          <div class="relative h-full max-w-7xl mx-auto px-6 lg:px-8 flex items-center">
+            <div class="max-w-xl text-cream-100">
+              <div
+                class="inline-flex items-center gap-2 bg-terra-500 text-white text-[10px] sm:text-[11px] font-semibold tracking-[.18em] uppercase px-3.5 py-1.5 rounded-full mb-4 sm:mb-5 shadow-lg">
+                <i data-lucide="tag" class="w-3.5 h-3.5"></i> Limited Time Offer
+              </div>
+              <h1
+                class="font-display text-4xl sm:text-5xl lg:text-[64px] font-semibold leading-[1.06] mb-4 sm:mb-5 text-white">
+                Sale of the<br><span class="italic text-terra-300 font-normal">season</span>
+              </h1>
+              <p class="text-sm sm:text-base text-cream-100/85 mb-6 sm:mb-8 max-w-lg leading-relaxed">
+                Save up to 30% on our most beloved artisan quilts, velvet cushions, and plush Turkish towel sets.
+              </p>
+              <a href="pages/shop.html#sale"
+                class="group inline-flex items-center gap-2.5 bg-terra-500 text-white px-7 py-3.5 rounded-full text-xs sm:text-sm font-semibold hover:bg-terra-600 transition-all hover:-translate-y-0.5 hover:shadow-xl">
+                Shop the sale <i data-lucide="arrow-right"
+                  class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="swiper-slide">
+          <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=1920&q=85" alt="Artisan bedroom"
+            class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-r from-ink-900/90 via-ink-900/55 to-transparent"></div>
+          <div class="relative h-full max-w-7xl mx-auto px-6 lg:px-8 flex items-center">
+            <div class="max-w-xl text-cream-100">
+              <div
+                class="inline-flex items-center gap-2 bg-cream-100/15 backdrop-blur-md border border-cream-100/25 text-[10px] sm:text-[11px] font-semibold tracking-[.18em] uppercase px-3.5 py-1.5 rounded-full mb-4 sm:mb-5">
+                <i data-lucide="award" class="w-3.5 h-3.5 text-gold-400"></i> New Arrivals
+              </div>
+              <h1
+                class="font-display text-4xl sm:text-5xl lg:text-[64px] font-semibold leading-[1.06] mb-4 sm:mb-5 text-white">
+                The ultimate<br><span class="italic text-sage-300 font-normal">bedding set</span>
+              </h1>
+              <p class="text-sm sm:text-base text-cream-100/85 mb-6 sm:mb-8 max-w-lg leading-relaxed">
+                Five tailored pieces. One deeply restful night's sleep. Crafted from 400 TC long-staple cotton.
+              </p>
+              <a href="pages/shop.html#new"
+                class="group inline-flex items-center gap-2.5 bg-cream-100 text-ink-900 px-7 py-3.5 rounded-full text-xs sm:text-sm font-semibold hover:bg-white transition-all hover:-translate-y-0.5 hover:shadow-xl">
+                Discover new in <i data-lucide="arrow-right"
+                  class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel Controls -->
+      <div class="swiper-pagination"></div>
+      <button class="hero-nav-btn hero-nav-prev" aria-label="Previous slide">
+        <i data-lucide="chevron-left" class="w-5 h-5"></i>
+      </button>
+      <button class="hero-nav-btn hero-nav-next" aria-label="Next slide">
+        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+      </button>
+    </div>
+  </section>
+
+  <!-- ═══════ TRUST ASSURANCE STRIP ═══════ -->
+  <section class="border-b border-sage-100 bg-sage-50/70">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-7 grid grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="flex items-center gap-3.5 justify-center lg:justify-start">
+        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-xs shrink-0">
+          <i data-lucide="truck" class="w-4.5 h-4.5 text-sage-600"></i>
+        </div>
+        <div class="text-xs sm:text-sm">
+          <div class="font-semibold text-ink-900">Free Shipping</div>
+          <div class="text-ink-800/55 text-[11px]">Orders over Rs. 5,000</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3.5 justify-center lg:justify-start">
+        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-xs shrink-0">
+          <i data-lucide="rotate-ccw" class="w-4.5 h-4.5 text-sage-600"></i>
+        </div>
+        <div class="text-xs sm:text-sm">
+          <div class="font-semibold text-ink-900">30-Day Returns</div>
+          <div class="text-ink-800/55 text-[11px]">No questions asked</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3.5 justify-center lg:justify-start">
+        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-xs shrink-0">
+          <i data-lucide="shield-check" class="w-4.5 h-4.5 text-sage-600"></i>
+        </div>
+        <div class="text-xs sm:text-sm">
+          <div class="font-semibold text-ink-900">Secure Payment</div>
+          <div class="text-ink-800/55 text-[11px]">256-bit SSL encrypted</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3.5 justify-center lg:justify-start">
+        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-xs shrink-0">
+          <i data-lucide="headphones" class="w-4.5 h-4.5 text-sage-600"></i>
+        </div>
+        <div class="text-xs sm:text-sm">
+          <div class="font-semibold text-ink-900">Dedicated Care</div>
+          <div class="text-ink-800/55 text-[11px]">Mon-Sat 10am to 7pm</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ CURATED COLLECTIONS ═══════ -->
+  <section class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
+    <div class="reveal text-center mb-12">
+      <div
+        class="inline-flex items-center gap-2 text-terra-500 text-[11px] font-semibold tracking-[.2em] uppercase mb-3">
+        <span class="w-7 h-px bg-terra-500"></span> Browse Collections <span class="w-7 h-px bg-terra-500"></span>
+      </div>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-ink-900">Handcrafted
+        for Everyday Serenity</h2>
+      <p class="text-ink-800/60 mt-3 max-w-xl mx-auto text-sm sm:text-base">Artisanal bedding, velvet cushions, and
+        throws designed to transform your bedroom into a quiet sanctuary.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5 lg:gap-6">
+      <!-- Bedding Sets -->
+      <a href="pages/shop.html#bedding"
+        class="reveal group relative overflow-hidden rounded-[30px] aspect-[4/5] cursor-pointer shadow-md hover:shadow-2xl transition-all duration-500">
+        <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&q=80"
+          class="w-full h-full object-cover zoom-img" alt="Bedding Sets">
+        <div class="absolute inset-0 bg-gradient-to-t from-ink-900/85 via-ink-900/35 to-transparent"></div>
+        <div
+          class="absolute top-5 left-5 bg-cream-100/15 backdrop-blur-md border border-cream-100/25 text-cream-100 text-[10px] font-semibold tracking-[.2em] uppercase px-3 py-1.5 rounded-full">
+          4 Designs
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 p-7 text-cream-100">
+          <h3 class="font-display text-2xl sm:text-3xl font-semibold mb-1.5">Bedding Sets</h3>
+          <p class="text-cream-100/75 text-xs sm:text-sm mb-3.5">Quilted, hand-embroidered & heirloom sateen</p>
+          <div
+            class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-gold-400 group-hover:gap-3 transition-all">
+            Explore sets <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </div>
+        </div>
+      </a>
+
+      <!-- Accessories -->
+      <a href="pages/shop.html#accessories"
+        class="reveal group relative overflow-hidden rounded-[30px] aspect-[4/5] cursor-pointer shadow-md hover:shadow-2xl transition-all duration-500"
+        style="transition-delay:.1s">
+        <img src="https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=800&q=80"
+          class="w-full h-full object-cover zoom-img" alt="Accessories">
+        <div class="absolute inset-0 bg-gradient-to-t from-ink-900/85 via-ink-900/35 to-transparent"></div>
+        <div
+          class="absolute top-5 left-5 bg-cream-100/15 backdrop-blur-md border border-cream-100/25 text-cream-100 text-[10px] font-semibold tracking-[.2em] uppercase px-3 py-1.5 rounded-full">
+          4 Products
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 p-7 text-cream-100">
+          <h3 class="font-display text-2xl sm:text-3xl font-semibold mb-1.5">Accessories & Decor</h3>
+          <p class="text-cream-100/75 text-xs sm:text-sm mb-3.5">Velvet cushions, linen runners & Turkish towels</p>
+          <div
+            class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-gold-400 group-hover:gap-3 transition-all">
+            Shop accents <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </div>
+        </div>
+      </a>
+
+      <!-- New In -->
+      <a href="pages/shop.html#new"
+        class="reveal group relative overflow-hidden rounded-[30px] aspect-[4/5] cursor-pointer shadow-md hover:shadow-2xl transition-all duration-500"
+        style="transition-delay:.2s">
+        <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=800&q=80"
+          class="w-full h-full object-cover zoom-img" alt="New Arrivals">
+        <div class="absolute inset-0 bg-gradient-to-t from-ink-900/85 via-ink-900/35 to-transparent"></div>
+        <div
+          class="absolute top-5 left-5 bg-terra-500 text-white text-[10px] font-semibold tracking-[.2em] uppercase px-3 py-1.5 rounded-full shine-sweep shadow-md">
+          Just Arrived
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 p-7 text-cream-100">
+          <h3 class="font-display text-2xl sm:text-3xl font-semibold mb-1.5">New In Atelier</h3>
+          <p class="text-cream-100/75 text-xs sm:text-sm mb-3.5">Fresh textures, muted palettes & antique borders</p>
+          <div
+            class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-gold-400 group-hover:gap-3 transition-all">
+            Discover new <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════ BESTSELLERS GRID ═══════ -->
+  <section class="bg-cream-100/75 border-y border-sage-100 py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="reveal flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+        <div>
+          <div
+            class="inline-flex items-center gap-2 text-terra-500 text-[11px] font-semibold tracking-[.2em] uppercase mb-3">
+            <span class="w-7 h-px bg-terra-500"></span> Signature Bestsellers
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-ink-900">Loved by
+            Our Community</h2>
+          <p class="text-ink-800/60 mt-2 text-sm sm:text-base max-w-md">The core pieces our clients recommend to friends
+            — tried, tested, and treasured.</p>
+        </div>
+        <a href="pages/shop.html"
+          class="group self-start sm:self-auto inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-sage-700 hover:text-ink-900 transition-colors">
+          View all bedding <i data-lucide="arrow-right"
+            class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+
       <div id="homeGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"></div>
     </div>
   </section>
 
-  <!-- PROMO -->
-  <section class="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
-    <div class="reveal relative rounded-[40px] overflow-hidden bg-gradient-to-br from-sage-800 via-sage-900 to-ink-900">
+  <!-- ═══════ SIGNATURE PROMO BANNER ═══════ -->
+  <section class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
+    <div
+      class="reveal relative rounded-[36px] overflow-hidden bg-gradient-to-br from-sage-800 via-sage-900 to-ink-900 shadow-2xl">
       <div class="grid lg:grid-cols-2">
-        <div class="relative aspect-[16/10] lg:aspect-auto overflow-hidden group">
-          <img src="https://images.unsplash.com/photo-1616627561950-9f746e330187?w=900&q=80" alt="" class="w-full h-full object-cover zoom-img">
+        <div class="relative aspect-[16/11] lg:aspect-auto overflow-hidden group">
+          <img src="https://images.unsplash.com/photo-1616627561950-9f746e330187?w=1000&q=85" alt="Ultimate bedding set"
+            class="w-full h-full object-cover zoom-img">
           <div class="absolute inset-0 bg-gradient-to-r from-transparent to-sage-900/30"></div>
-          <div class="absolute top-8 left-8 w-24 h-24 rounded-full bg-terra-500 flex items-center justify-center text-white font-display font-semibold text-center leading-tight animate-float shadow-2xl" style="font-size:14px">
+          <div
+            class="absolute top-6 left-6 w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-terra-500 flex items-center justify-center text-white font-display font-semibold text-center leading-tight animate-float shadow-2xl text-xs sm:text-sm">
             UP<br>TO<br>30%<br>OFF
           </div>
         </div>
-        <div class="p-10 lg:p-16 flex flex-col justify-center text-cream-100">
-          <div class="inline-flex items-center gap-2 text-gold-400 text-[11px] font-semibold tracking-[.2em] uppercase mb-5">
-            <span class="w-8 h-px bg-gold-400"></span> The Ultimate Set
+
+        <div class="p-8 sm:p-12 lg:p-16 flex flex-col justify-center text-cream-100">
+          <div
+            class="inline-flex items-center gap-2 text-gold-400 text-[11px] font-semibold tracking-[.2em] uppercase mb-4">
+            <span class="w-7 h-px bg-gold-400"></span> Signature Collection
           </div>
-          <h3 class="font-display text-3xl lg:text-5xl font-semibold leading-tight mb-5">Everything your bed has been missing</h3>
-          <p class="text-cream-100/70 leading-relaxed mb-8 max-w-md">Made with care and unconditionally loved by our customers, this signature bestseller exceeds all expectations. Five pieces, one perfect night's sleep.</p>
-          <div class="flex flex-wrap items-center gap-4 mb-8 text-sm text-cream-100/70">
-            <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-gold-400"></i> Premium cotton</div>
-            <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-gold-400"></i> Hand-quilted</div>
-            <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-gold-400"></i> Gift ready</div>
+          <h3 class="font-display text-2xl sm:text-4xl font-semibold leading-tight mb-4">Everything your bedroom has
+            been waiting for</h3>
+          <p class="text-cream-100/75 text-sm sm:text-base leading-relaxed mb-7 max-w-md">
+            Woven from breathable long-staple cotton with hand-finished quilted geometry. Five pieces meticulously
+            designed to layer together into a tranquil retreat.
+          </p>
+          <div class="flex flex-wrap items-center gap-4 mb-8 text-xs sm:text-sm text-cream-100/80">
+            <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-gold-400"></i> 100% Egyptian
+              Cotton</div>
+            <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-gold-400"></i> Artisan
+              Quilting</div>
+            <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-gold-400"></i> Gift
+              Packaging Included</div>
           </div>
-          <button onclick="go('shop')" class="self-start group inline-flex items-center gap-3 bg-terra-500 text-white px-7 py-3.5 rounded-full text-sm font-semibold hover:bg-terra-600 transition-all">
-            Shop now <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-          </button>
+          <a href="pages/shop.html"
+            class="self-start group inline-flex items-center gap-2.5 bg-terra-500 text-white px-7 py-3.5 rounded-full text-xs sm:text-sm font-semibold hover:bg-terra-600 transition-all hover:shadow-lg">
+            Shop Signature Set <i data-lucide="arrow-right"
+              class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ACCESSORIES -->
-  <section class="bg-sage-50 border-y border-sage-100 py-20 lg:py-28">
+  <!-- ═══════ ACCESSORIES HIGHLIGHT ═══════ -->
+  <section class="bg-sage-50/70 border-y border-sage-100 py-16 lg:py-24">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <div class="reveal text-center mb-14">
-        <div class="inline-flex items-center gap-2 text-terra-500 text-[11px] font-semibold tracking-[.2em] uppercase mb-4">
-          <span class="w-8 h-px bg-terra-500"></span> Complete your home <span class="w-8 h-px bg-terra-500"></span>
+      <div class="reveal text-center mb-12">
+        <div
+          class="inline-flex items-center gap-2 text-terra-500 text-[11px] font-semibold tracking-[.2em] uppercase mb-3">
+          <span class="w-7 h-px bg-terra-500"></span> Completing Accents <span class="w-7 h-px bg-terra-500"></span>
         </div>
-        <h2 class="font-display text-4xl lg:text-5xl font-semibold tracking-tight">Accessories</h2>
-        <p class="text-ink-800/60 mt-3 max-w-xl mx-auto">Finishing touches that tie the whole room together.</p>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-ink-900">Accessories
+          & Textiles</h2>
+        <p class="text-ink-800/60 mt-2.5 text-sm sm:text-base max-w-xl mx-auto">Tactile finishing details that bring
+          softness, tone, and character to living rooms and bedrooms.</p>
       </div>
+
       <div id="homeAccessories" class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"></div>
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section class="max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
-    <div class="reveal text-center mb-14">
-      <div class="inline-flex items-center gap-2 text-terra-500 text-[11px] font-semibold tracking-[.2em] uppercase mb-4">
-        <span class="w-8 h-px bg-terra-500"></span> Testimonials <span class="w-8 h-px bg-terra-500"></span>
+  <!-- ═══════ TESTIMONIALS ═══════ -->
+  <section class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
+    <div class="reveal text-center mb-12">
+      <div
+        class="inline-flex items-center gap-2 text-terra-500 text-[11px] font-semibold tracking-[.2em] uppercase mb-3">
+        <span class="w-7 h-px bg-terra-500"></span> Customer Stories <span class="w-7 h-px bg-terra-500"></span>
       </div>
-      <h2 class="font-display text-4xl lg:text-5xl font-semibold tracking-tight">Words from our homes</h2>
-      <div class="flex items-center justify-center gap-3 mt-5">
-        <div class="flex gap-1 text-gold-500 text-lg">★★★★★</div>
-        <span class="text-sm text-ink-800/60">4.9 · 2,400+ verified reviews</span>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-ink-900">Words from
+        Real Homes</h2>
+      <div class="flex items-center justify-center gap-2.5 mt-4">
+        <div class="flex text-gold-500 text-base">★★★★★</div>
+        <span class="text-xs sm:text-sm text-ink-800/65 font-medium">4.9 average from 2,400+ verified purchases</span>
       </div>
     </div>
+
     <div class="grid md:grid-cols-3 gap-6">
-      <div class="reveal bg-white rounded-3xl p-8 border border-sage-100 hover:shadow-2xl hover:shadow-ink-900/5 transition-all hover:-translate-y-1">
-        <div class="flex gap-1 text-gold-500 mb-4">★★★★★</div>
-        <p class="text-ink-800/75 leading-relaxed mb-6">"The quality is absolutely unmatched. My bedroom finally feels like a 5-star hotel suite."</p>
-        <div class="flex items-center gap-3 pt-6 border-t border-sage-100">
-          <img src="https://i.pravatar.cc/80?img=47" class="w-11 h-11 rounded-full object-cover" alt="">
-          <div><div class="text-sm font-semibold">Ayesha Khan</div><div class="text-xs text-ink-800/55 flex items-center gap-1"><i data-lucide="check-circle" class="w-3 h-3 text-sage-500"></i> Verified buyer · Lahore</div></div>
-        </div>
-      </div>
-      <div class="reveal bg-white rounded-3xl p-8 border border-sage-100 hover:shadow-2xl hover:shadow-ink-900/5 transition-all hover:-translate-y-1" style="transition-delay:.1s">
-        <div class="flex gap-1 text-gold-500 mb-4">★★★★★</div>
-        <p class="text-ink-800/75 leading-relaxed mb-6">"Bought the Bloomora set as a gift and ended up ordering one for myself. The embroidery detail is stunning."</p>
-        <div class="flex items-center gap-3 pt-6 border-t border-sage-100">
-          <img src="https://i.pravatar.cc/80?img=12" class="w-11 h-11 rounded-full object-cover" alt="">
-          <div><div class="text-sm font-semibold">Hassan Raza</div><div class="text-xs text-ink-800/55 flex items-center gap-1"><i data-lucide="check-circle" class="w-3 h-3 text-sage-500"></i> Verified buyer · Karachi</div></div>
-        </div>
-      </div>
-      <div class="reveal bg-white rounded-3xl p-8 border border-sage-100 hover:shadow-2xl hover:shadow-ink-900/5 transition-all hover:-translate-y-1" style="transition-delay:.2s">
-        <div class="flex gap-1 text-gold-500 mb-4">★★★★★</div>
-        <p class="text-ink-800/75 leading-relaxed mb-6">"Fast shipping, beautiful packaging, and the softest bedding I've ever owned. Paradise is now my go-to."</p>
-        <div class="flex items-center gap-3 pt-6 border-t border-sage-100">
-          <img src="https://i.pravatar.cc/80?img=32" class="w-11 h-11 rounded-full object-cover" alt="">
-          <div><div class="text-sm font-semibold">Sana Malik</div><div class="text-xs text-ink-800/55 flex items-center gap-1"><i data-lucide="check-circle" class="w-3 h-3 text-sage-500"></i> Verified buyer · Islamabad</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- NEWSLETTER -->
-  <section class="max-w-7xl mx-auto px-6 lg:px-8 pb-24">
-    <div class="reveal relative rounded-[40px] bg-gradient-to-br from-sage-700 to-sage-900 p-10 lg:p-20 overflow-hidden">
-      <div class="absolute -top-20 -right-20 w-80 h-80 bg-gold-400/10 rounded-full blur-3xl animate-float"></div>
-      <div class="absolute -bottom-32 -left-20 w-96 h-96 bg-terra-400/10 rounded-full blur-3xl animate-float" style="animation-delay:-3s"></div>
-      <div class="relative max-w-2xl mx-auto text-center text-white">
-        <div class="w-14 h-14 rounded-full bg-cream-100/10 backdrop-blur border border-cream-100/20 flex items-center justify-center mx-auto mb-6">
-          <i data-lucide="mail" class="w-6 h-6 text-gold-400"></i>
-        </div>
-        <h3 class="font-display text-3xl lg:text-5xl font-semibold mb-4">Join the Paradise family</h3>
-        <p class="text-white/80 mb-8 text-lg">Enjoy 10% off your first order, plus early access to new collections and exclusive offers.</p>
-        <form onsubmit="event.preventDefault(); showToast('Subscribed! Check your inbox 🎉'); this.reset();" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-          <input type="email" required placeholder="your@email.com" class="flex-1 px-5 py-4 rounded-full bg-white/15 backdrop-blur border border-white/25 text-white placeholder-white/60 outline-none focus:bg-white/25 transition">
-          <button class="px-7 py-4 rounded-full bg-terra-500 text-white text-sm font-semibold hover:bg-terra-600 transition">Subscribe</button>
-        </form>
-        <p class="text-xs text-white/50 mt-4">No spam, ever. Unsubscribe anytime.</p>
-      </div>
-    </div>
-  </section>
-</main>
-
-<!-- ═══════ SHOP ═══════ -->
-<main id="page-shop" class="page hidden">
-  <section class="max-w-7xl mx-auto px-6 lg:px-8 py-14 lg:py-20">
-    <div class="text-center mb-10 animate-fade-up">
-      <div class="inline-flex items-center gap-2 text-terra-500 text-[11px] font-semibold tracking-[.2em] uppercase mb-4">
-        <span class="w-8 h-px bg-terra-500"></span> <span id="shopLabel">All products</span> <span class="w-8 h-px bg-terra-500"></span>
-      </div>
-      <h1 id="shopTitle" class="font-display text-4xl lg:text-6xl font-semibold tracking-tight">Shop the collection</h1>
-      <p class="text-ink-800/60 mt-4 max-w-xl mx-auto" id="shopDesc">Discover handcrafted luxury bedding and accessories.</p>
-    </div>
-
-    <div class="flex flex-col sm:flex-row gap-3 justify-between items-center mb-8 bg-white rounded-2xl p-3 border border-sage-100 animate-fade-up">
-      <div class="flex gap-2 flex-wrap">
-        <button onclick="filterShop('all')" data-filter="all" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-sage-800 text-cream-100 transition-all">All</button>
-        <button onclick="filterShop('bedding')" data-filter="bedding" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-sage-100 text-sage-800 hover:bg-sage-200 transition-all">Bedding</button>
-        <button onclick="filterShop('accessories')" data-filter="accessories" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-sage-100 text-sage-800 hover:bg-sage-200 transition-all">Accessories</button>
-        <button onclick="filterShop('sale')" data-filter="sale" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-sage-100 text-sage-800 hover:bg-sage-200 transition-all">On Sale</button>
-      </div>
-      <div class="flex items-center gap-2">
-        <span class="text-xs text-ink-800/60 font-medium">Sort:</span>
-        <select id="sortSelect" onchange="sortShop(this.value)" class="text-xs font-semibold bg-sage-100 border-0 rounded-full px-4 py-2 outline-none cursor-pointer hover:bg-sage-200 transition">
-          <option value="featured">Featured</option>
-          <option value="low">Price: Low to High</option>
-          <option value="high">Price: High to Low</option>
-          <option value="rating">Top Rated</option>
-        </select>
-      </div>
-    </div>
-
-    <div id="shopGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"></div>
-    <div id="shopEmpty" class="hidden text-center py-20">
-      <i data-lucide="package-search" class="w-12 h-12 text-sage-400 mx-auto mb-4"></i>
-      <p class="text-ink-800/60">No products match your filters.</p>
-    </div>
-  </section>
-</main>
-
-<!-- ═══════ PRODUCT DETAIL ═══════ -->
-<main id="page-product" class="page hidden">
-  <div id="productDetail" class="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-16"></div>
-</main>
-
-<!-- ═══════ WISHLIST ═══════ -->
-<main id="page-wishlist" class="page hidden">
-  <section class="max-w-7xl mx-auto px-6 lg:px-8 py-14 lg:py-20">
-    <div class="text-center mb-14 animate-fade-up">
-      <div class="inline-flex items-center gap-2 text-terra-500 text-[11px] font-semibold tracking-[.2em] uppercase mb-4">
-        <span class="w-8 h-px bg-terra-500"></span> Saved items <span class="w-8 h-px bg-terra-500"></span>
-      </div>
-      <h1 class="font-display text-4xl lg:text-6xl font-semibold tracking-tight">Your Wishlist</h1>
-    </div>
-    <div id="wishlistGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"></div>
-  </section>
-</main>
-
-<!-- ═══════ CART ═══════ -->
-<main id="page-cart" class="page hidden">
-  <div id="cartLayout" class="max-w-6xl mx-auto px-6 lg:px-8 py-12 lg:py-16"></div>
-</main>
-
-<!-- ═══════ ACCOUNT ═══════ -->
-<main id="page-account" class="page hidden">
-  <div class="max-w-md mx-auto px-6 py-14 lg:py-20">
-    <div class="bg-white rounded-[32px] p-8 lg:p-10 border border-sage-100 shadow-2xl shadow-ink-900/5 animate-fade-up">
-      <div class="w-14 h-14 rounded-full bg-sage-100 flex items-center justify-center mb-6">
-        <i data-lucide="user" class="w-6 h-6 text-sage-700"></i>
-      </div>
-      <h2 id="authTitle" class="font-display text-3xl font-semibold mb-2">Create account</h2>
-      <p id="authSub" class="text-ink-800/60 text-sm mb-8">Join Paradise and enjoy 10% off your first order.</p>
-      <form id="authForm" onsubmit="handleAuth(event)" class="space-y-5">
-        <div id="nameField">
-          <label class="block text-xs font-semibold text-ink-800/70 mb-2">Full name</label>
-          <div class="relative">
-            <i data-lucide="user" class="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-sage-500/70"></i>
-            <input type="text" id="authName" placeholder="Ayesha Khan" class="w-full pl-11 pr-4 py-3.5 rounded-2xl border-[1.5px] border-sage-200 bg-sage-50 focus:bg-white focus:border-sage-500 focus:ring-4 focus:ring-sage-500/10 outline-none transition text-sm">
-          </div>
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-ink-800/70 mb-2">Email</label>
-          <div class="relative">
-            <i data-lucide="mail" class="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-sage-500/70"></i>
-            <input type="email" id="authEmail" required placeholder="hello@paradise.com" class="w-full pl-11 pr-4 py-3.5 rounded-2xl border-[1.5px] border-sage-200 bg-sage-50 focus:bg-white focus:border-sage-500 focus:ring-4 focus:ring-sage-500/10 outline-none transition text-sm">
-          </div>
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-ink-800/70 mb-2">Password</label>
-          <div class="relative">
-            <i data-lucide="lock" class="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-sage-500/70"></i>
-            <input type="password" id="authPass" required placeholder="••••••••" class="w-full pl-11 pr-4 py-3.5 rounded-2xl border-[1.5px] border-sage-200 bg-sage-50 focus:bg-white focus:border-sage-500 focus:ring-4 focus:ring-sage-500/10 outline-none transition text-sm">
-          </div>
-        </div>
-        <button type="submit" id="authBtn" class="w-full bg-sage-800 text-cream-100 py-4 rounded-2xl text-sm font-semibold hover:bg-sage-700 transition-all hover:shadow-xl hover:shadow-sage-800/20 flex items-center justify-center gap-2">
-          Create account <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </button>
-      </form>
-      <p id="switchText" class="text-center text-sm text-ink-800/60 mt-6">
-        Already have an account? <a onclick="toggleAuth()" class="text-terra-500 font-semibold cursor-pointer hover:underline">Sign in</a>
-      </p>
-    </div>
-  </div>
-</main>
-
-<!-- ═══════ FOOTER ═══════ -->
-<footer class="bg-ink-900 text-cream-100/70 mt-20">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
-    <div class="grid grid-cols-2 lg:grid-cols-5 gap-10 mb-14">
-      <div class="col-span-2">
-        <div class="flex items-center gap-2.5 mb-5">
-          <div class="w-10 h-10 rounded-full bg-cream-100 flex items-center justify-center">
-            <i data-lucide="feather" class="w-4 h-4 text-sage-900"></i>
-          </div>
+      <div
+        class="reveal bg-white rounded-3xl p-7 border border-sage-100 hover:shadow-xl transition-all hover:-translate-y-1">
+        <div class="flex text-gold-500 text-sm mb-3">★★★★★</div>
+        <p class="text-ink-800/75 text-sm leading-relaxed mb-6">"The material weight and softness are remarkable. Our
+          bedroom genuinely feels like a boutique hotel retreat every evening."</p>
+        <div class="flex items-center gap-3 pt-5 border-t border-sage-100">
+          <img src="https://i.pravatar.cc/80?img=47" class="w-10 h-10 rounded-full object-cover" alt="Ayesha Khan">
           <div>
-            <div class="font-display text-[21px] font-semibold text-cream-100 leading-none">PARADISE<span class="text-terra-400 font-normal text-[16px]">home</span></div>
-            <div class="text-[9px] tracking-[.28em] text-sage-400 font-medium mt-1">LUXURY BEDDING</div>
+            <div class="text-xs sm:text-sm font-semibold text-ink-900">Ayesha Khan</div>
+            <div class="text-[11px] text-ink-800/50 flex items-center gap-1"><i data-lucide="check-circle"
+                class="w-3 h-3 text-sage-500"></i> Verified buyer · Lahore</div>
           </div>
         </div>
-        <p class="text-sm leading-relaxed max-w-sm mb-6 text-cream-100/60">Quilted bedding, antique embroidery, and heirloom-quality sets — thoughtfully crafted for everyday indulgence.</p>
-        <div class="flex gap-3">
-          <a class="w-10 h-10 rounded-full bg-cream-100/10 flex items-center justify-center hover:bg-terra-500 transition-colors cursor-pointer"><i data-lucide="instagram" class="w-4 h-4"></i></a>
-          <a class="w-10 h-10 rounded-full bg-cream-100/10 flex items-center justify-center hover:bg-terra-500 transition-colors cursor-pointer"><i data-lucide="facebook" class="w-4 h-4"></i></a>
-          <a class="w-10 h-10 rounded-full bg-cream-100/10 flex items-center justify-center hover:bg-terra-500 transition-colors cursor-pointer"><i data-lucide="twitter" class="w-4 h-4"></i></a>
-          <a class="w-10 h-10 rounded-full bg-cream-100/10 flex items-center justify-center hover:bg-terra-500 transition-colors cursor-pointer"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+      </div>
+
+      <div
+        class="reveal bg-white rounded-3xl p-7 border border-sage-100 hover:shadow-xl transition-all hover:-translate-y-1"
+        style="transition-delay:.1s">
+        <div class="flex text-gold-500 text-sm mb-3">★★★★★</div>
+        <p class="text-ink-800/75 text-sm leading-relaxed mb-6">"Ordered the Bloomora set as a housewarming gift and
+          promptly bought one for myself. The delicate embroidery is stunning."</p>
+        <div class="flex items-center gap-3 pt-5 border-t border-sage-100">
+          <img src="https://i.pravatar.cc/80?img=12" class="w-10 h-10 rounded-full object-cover" alt="Hassan Raza">
+          <div>
+            <div class="text-xs sm:text-sm font-semibold text-ink-900">Hassan Raza</div>
+            <div class="text-[11px] text-ink-800/50 flex items-center gap-1"><i data-lucide="check-circle"
+                class="w-3 h-3 text-sage-500"></i> Verified buyer · Karachi</div>
+          </div>
         </div>
       </div>
-      <div>
-        <h4 class="text-cream-100 font-semibold text-sm mb-5 tracking-wide">Shop</h4>
-        <ul class="space-y-3 text-sm">
-          <li onclick="go('shop','bedding')" class="hover:text-cream-100 cursor-pointer transition-colors">Bedding Sets</li>
-          <li onclick="go('shop','accessories')" class="hover:text-cream-100 cursor-pointer transition-colors">Accessories</li>
-          <li onclick="go('shop','new')" class="hover:text-cream-100 cursor-pointer transition-colors">New In</li>
-          <li onclick="go('shop','sale')" class="hover:text-terra-400 cursor-pointer transition-colors">Sale</li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-cream-100 font-semibold text-sm mb-5 tracking-wide">Help</h4>
-        <ul class="space-y-3 text-sm">
-          <li class="hover:text-cream-100 cursor-pointer transition-colors">Shipping Info</li>
-          <li class="hover:text-cream-100 cursor-pointer transition-colors">Returns</li>
-          <li class="hover:text-cream-100 cursor-pointer transition-colors">Contact Us</li>
-          <li class="hover:text-cream-100 cursor-pointer transition-colors">Track Order</li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-cream-100 font-semibold text-sm mb-5 tracking-wide">Company</h4>
-        <ul class="space-y-3 text-sm">
-          <li class="hover:text-cream-100 cursor-pointer transition-colors">About Us</li>
-          <li class="hover:text-cream-100 cursor-pointer transition-colors">Sustainability</li>
-          <li class="hover:text-cream-100 cursor-pointer transition-colors">Careers</li>
-          <li class="hover:text-cream-100 cursor-pointer transition-colors">Privacy</li>
-        </ul>
+
+      <div
+        class="reveal bg-white rounded-3xl p-7 border border-sage-100 hover:shadow-xl transition-all hover:-translate-y-1"
+        style="transition-delay:.2s">
+        <div class="flex text-gold-500 text-sm mb-3">★★★★★</div>
+        <p class="text-ink-800/75 text-sm leading-relaxed mb-6">"Rapid delivery, elegant ribbon-tied packaging, and
+          fabric that gets even softer after washing. Paradise Home is now our only bedding choice."</p>
+        <div class="flex items-center gap-3 pt-5 border-t border-sage-100">
+          <img src="https://i.pravatar.cc/80?img=32" class="w-10 h-10 rounded-full object-cover" alt="Sana Malik">
+          <div>
+            <div class="text-xs sm:text-sm font-semibold text-ink-900">Sana Malik</div>
+            <div class="text-[11px] text-ink-800/50 flex items-center gap-1"><i data-lucide="check-circle"
+                class="w-3 h-3 text-sage-500"></i> Verified buyer · Islamabad</div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="pt-8 border-t border-cream-100/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-cream-100/50">
-      <div>© 2025 Paradise Home Store. All rights reserved.</div>
-      <div class="flex items-center gap-2">Made with <span class="text-terra-400">♥</span> in Pakistan</div>
+  </section>
+
+  <!-- ═══════ NEWSLETTER INVITATION ═══════ -->
+  <section class="max-w-7xl mx-auto px-6 lg:px-8 pb-20 lg:pb-24">
+    <div
+      class="reveal relative rounded-[36px] bg-gradient-to-br from-sage-700 to-sage-900 p-8 sm:p-14 lg:p-18 overflow-hidden text-center text-white shadow-xl">
+      <div class="absolute -top-20 -right-20 w-80 h-80 bg-gold-400/15 rounded-full blur-3xl animate-float"></div>
+      <div class="absolute -bottom-32 -left-20 w-96 h-96 bg-terra-400/15 rounded-full blur-3xl animate-float"
+        style="animation-delay:-3s"></div>
+
+      <div class="relative max-w-xl mx-auto">
+        <div
+          class="w-12 h-12 rounded-full bg-cream-100/10 backdrop-blur-md border border-cream-100/20 flex items-center justify-center mx-auto mb-5 shadow-xs">
+          <i data-lucide="mail" class="w-5 h-5 text-gold-400"></i>
+        </div>
+        <h3 class="font-display text-3xl sm:text-4xl font-semibold mb-3">Join the Paradise Circle</h3>
+        <p class="text-white/80 text-sm sm:text-base mb-7 leading-relaxed">
+          Enjoy 10% off your initial order, early access to limited seasonal runs, and bespoke home styling notes.
+        </p>
+
+        <form
+          onsubmit="event.preventDefault(); showToast('Subscribed! Check your inbox for your 10% code 🎉', 'mail'); this.reset();"
+          class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          <input type="email" required placeholder="Enter your email address"
+            class="flex-1 px-5 py-3.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-white placeholder-white/60 outline-none focus:bg-white/25 text-sm transition">
+          <button type="submit"
+            class="px-7 py-3.5 rounded-full bg-terra-500 text-white text-xs sm:text-sm font-semibold hover:bg-terra-600 transition-all shadow-md shrink-0">
+            Subscribe
+          </button>
+        </form>
+        <p class="text-[11px] text-white/50 mt-3.5">We respect your inbox. Unsubscribe with one click anytime.</p>
+      </div>
     </div>
-  </div>
-</footer>
+  </section>
 
-<!-- ═══════ TOAST ═══════ -->
-<div id="toast" class="fixed bottom-24 right-8 z-[999] translate-y-32 opacity-0 transition-all duration-500 pointer-events-none">
-  <div class="bg-ink-900 text-cream-100 px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 text-sm font-medium border border-sage-700/30">
-    <i data-lucide="check-circle" class="w-5 h-5 text-sage-300 shrink-0"></i>
-    <span id="toastMsg">Added to cart</span>
-  </div>
-</div>
-
-<!-- ═══════ LIGHTBOX MODAL ═══════ -->
-<div id="lightbox" class="lightbox">
-  <button class="lightbox-close" onclick="closeLightbox()"><i data-lucide="x" class="w-6 h-6"></i></button>
-  <button class="lightbox-nav prev" onclick="lightboxPrev()"><i data-lucide="chevron-left" class="w-6 h-6"></i></button>
-  <button class="lightbox-nav next" onclick="lightboxNext()"><i data-lucide="chevron-right" class="w-6 h-6"></i></button>
-  <img id="lightboxImg" src="" alt="">
-  <div id="lightboxCounter" class="lightbox-counter">1 / 4</div>
-</div>
-
-<!-- ═══════ STICKY ADD-TO-CART BAR ═══════ -->
-<div id="stickyBar" class="sticky-bar">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between gap-4">
-    <div class="flex items-center gap-4 min-w-0">
-      <div id="stickyImg" class="w-14 h-14 rounded-2xl overflow-hidden bg-sage-100 shrink-0"></div>
-      <div class="min-w-0">
-        <div id="stickyName" class="text-sm font-medium truncate"></div>
-        <div id="stickyPrice" class="text-sm font-semibold text-sage-700"></div>
-      </div>
-    </div>
-    <button id="stickyAddBtn" class="bg-sage-800 text-cream-100 px-6 py-3 rounded-full text-sm font-semibold hover:bg-sage-700 transition-all flex items-center gap-2 shrink-0">
-      <i data-lucide="shopping-bag" class="w-4 h-4"></i> Add to cart
-    </button>
-  </div>
-</div>
-
-<script>
-/* ═══════════ PRODUCTS — with more details ═══════════ */
-const products = [
-  {
-    id:1, name:"Harmony – Premium Designer Quilted 5 Pc. Bedding Set", cat:"bedding", price:7999, old:null, badge:"Bestseller", rating:4.9, reviews:342, sold:890,
-    images:[
-      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1200&q=80",
-      "https://images.unsplash.com/photo-1616627561950-9f746e330187?w=1200&q=80",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80",
-      "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=1200&q=80"
-    ],
-    desc:"Luxurious quilted 5 piece bedding set with designer finish. Made with care and unconditionally loved by our customers.",
-    longDesc:"Experience the pinnacle of comfort with our Harmony set. Each piece is quilted by hand using premium long-staple cotton, finished with delicate contrast piping and hidden button closures. The set includes one duvet cover, one fitted sheet, two pillowcases, and one decorative cushion — everything you need for a beautifully made bed.",
-    details:["100% Egyptian cotton, 400 TC","Hand-quilted diamond pattern","Hidden button closures","Machine washable at 30°C","Includes: 1 duvet + 1 fitted sheet + 2 pillowcases + 1 cushion"],
-    sizes:["Single","Double","Queen","King"],
-    colors:["#e8d5b0","#a9bd92","#c4a882","#7a8f5a"],
-    delivery:"Free delivery in 3–5 working days"
-  },
-  {
-    id:2, name:"BLOOMORA – Luxurious Quilted 5 Pc. Bedding Set", cat:"bedding", price:8999, old:11999, badge:"Sale", rating:4.8, reviews:218, sold:645,
-    images:[
-      "https://images.unsplash.com/photo-1616627561950-9f746e330187?w=1200&q=80",
-      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1200&q=80",
-      "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=1200&q=80",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80"
-    ],
-    desc:"Luxurious quilted 5 piece bedding set. Soft, breathable, and beautifully crafted for a restful night's sleep.",
-    longDesc:"Bloomora brings romance to your bedroom with delicate floral quilting and a soft, brushed finish. The breathable weave keeps you cool in summer and cozy in winter — a true year-round luxury.",
-    details:["Brushed cotton, 300 TC","Floral quilted pattern","Envelope pillow closures","Machine washable at 30°C","Includes: 1 duvet + 1 fitted sheet + 2 pillowcases + 1 cushion"],
-    sizes:["Single","Double","Queen","King"],
-    colors:["#f4c9b4","#e8d5b0","#a9bd92"],
-    delivery:"Free delivery in 3–5 working days"
-  },
-  {
-    id:3, name:"GARDEN – Premium Embroidered Floral 5 Pc. Bedding Set", cat:"bedding", price:7999, old:null, badge:null, rating:4.9, reviews:156, sold:412,
-    images:[
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80",
-      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1200&q=80",
-      "https://images.unsplash.com/photo-1616627561950-9f746e330187?w=1200&q=80",
-      "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=1200&q=80"
-    ],
-    desc:"Premium embroidered floral 5 piece bedding set. Elegant detailing that brings the garden indoors.",
-    longDesc:"Hand-embroidered blossoms decorate this heirloom-worthy set. Each flower is stitched by our artisans over 40+ hours, creating a one-of-a-kind piece that will be treasured for years.",
-    details:["Hand-embroidered floral motifs","Premium sateen cotton","Concealed zip closures","Dry clean recommended","Includes: 1 duvet + 1 fitted sheet + 2 pillowcases + 1 cushion"],
-    sizes:["Double","Queen","King"],
-    colors:["#f4c9b4","#e8d5b0","#d4c8a8"],
-    delivery:"Free delivery in 4–6 working days"
-  },
-  {
-    id:4, name:"ASH – Luxe Antique, Exquisite Embroidery, 3 Piece Bedding Set", cat:"bedding", price:5999, old:null, badge:"New", rating:4.7, reviews:89, sold:234,
-    images:[
-      "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=1200&q=80",
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80",
-      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1200&q=80",
-      "https://images.unsplash.com/photo-1616627561950-9f746e330187?w=1200&q=80"
-    ],
-    desc:"Luxe antique 3 piece bedding set with exquisite embroidery. A timeless statement for your bedroom.",
-    longDesc:"A celebration of antique craftsmanship, ASH pairs traditional embroidery with a modern muted palette. The 3-piece set includes a duvet cover and two pillowcases — perfect for those who prefer a more minimal approach.",
-    details:["Antique-inspired embroidery","Soft washed linen blend","Corozo buttons","Machine washable cold","Includes: 1 duvet + 2 pillowcases"],
-    sizes:["Double","Queen","King"],
-    colors:["#a9bd92","#e8d5b0","#b0a89a"],
-    delivery:"Free delivery in 3–5 working days"
-  },
-  {
-    id:5, name:"Velvet Cushion Cover Set (2 Pc.)", cat:"accessories", price:2499, old:3499, badge:"Sale", rating:4.8, reviews:127, sold:398,
-    images:[
-      "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=1200&q=80",
-      "https://images.unsplash.com/photo-1567016432779-094069958ea5?w=1200&q=80",
-      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=80",
-      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1200&q=80"
-    ],
-    desc:"Soft velvet cushion covers to complete your home decor. Set of two, in muted, versatile tones.",
-    longDesc:"Plush velvet cushion covers with a subtle sheen that catches the light beautifully. Hidden zipper closure and piped edges for a polished look. Sold as a set of two.",
-    details:["Plush velvet fabric","Hidden zipper closure","Piped edges","45 × 45 cm each","Set of 2 covers (inserts not included)"],
-    sizes:["45×45 cm"],
-    colors:["#a9bd92","#f4c9b4","#e8d5b0","#c4a882"],
-    delivery:"Free delivery in 3–5 working days"
-  },
-  {
-    id:6, name:"Embroidered Table Runner", cat:"accessories", price:1899, old:null, badge:null, rating:4.7, reviews:64, sold:187,
-    images:[
-      "https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=1200&q=80",
-      "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=1200&q=80",
-      "https://images.unsplash.com/photo-1567016432779-094069958ea5?w=1200&q=80",
-      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=80"
-    ],
-    desc:"Hand-embroidered table runner to add elegance to your dining space.",
-    longDesc:"A delicate hand-embroidered runner that elevates any table setting. Crafted on natural linen with artisanal thread work. Perfect for special occasions or everyday elegance.",
-    details:["Hand-embroidered linen","180 × 35 cm","Finished edges","Hand wash cold","Made in Pakistan"],
-    sizes:["180×35 cm"],
-    colors:["#e8d5b0","#a9bd92"],
-    delivery:"Free delivery in 3–5 working days"
-  },
-  {
-    id:7, name:"Quilted Throw Blanket", cat:"accessories", price:3999, old:4999, badge:"Sale", rating:4.9, reviews:203, sold:521,
-    images:[
-      "https://images.unsplash.com/photo-1567016432779-094069958ea5?w=1200&q=80",
-      "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=1200&q=80",
-      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=80",
-      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1200&q=80"
-    ],
-    desc:"Cozy quilted throw blanket, perfect for chilly evenings on the couch or layered on your bed.",
-    longDesc:"Our quilted throw is the ultimate cozy companion. Lightweight yet warm, with a subtle diamond quilt pattern and rolled edges. Looks beautiful draped over a sofa or at the foot of your bed.",
-    details:["Quilted cotton blend","130 × 170 cm","Rolled edge finish","Machine washable","Reversible design"],
-    sizes:["130×170 cm"],
-    colors:["#e8d5b0","#a9bd92","#c4a882"],
-    delivery:"Free delivery in 3–5 working days"
-  },
-  {
-    id:8, name:"Luxury Bath Towel Set (4 Pc.)", cat:"accessories", price:3299, old:null, badge:"New", rating:4.8, reviews:98, sold:276,
-    images:[
-      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=1200&q=80",
-      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=80",
-      "https://images.unsplash.com/photo-1567016432779-094069958ea5?w=1200&q=80",
-      "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=1200&q=80"
-    ],
-    desc:"Premium cotton bath towel set, ultra-soft and absorbent.",
-    longDesc:"Woven from long-staple Turkish cotton, these towels are plush, absorbent, and get softer with every wash. Set includes two bath towels and two hand towels.",
-    details:["100% Turkish cotton","600 GSM","Double-stitched hems","Machine washable","Set: 2 bath + 2 hand towels"],
-    sizes:["Standard Set"],
-    colors:["#fdfbf7","#e8d5b0","#a9bd92"],
-    delivery:"Free delivery in 3–5 working days"
-  },
-];
-
-/* ═══════════ STATE ═══════════ */
-let cart = JSON.parse(localStorage.getItem('ph_cart_v5')) || [];
-let wishlist = JSON.parse(localStorage.getItem('ph_wish_v5')) || [];
-let currentAuthMode = 'register';
-let currentQty = 1;
-let currentProductId = null;
-let currentFilter = 'all';
-let currentSort = 'featured';
-let heroSwiper = null, productSwiper = null;
-let lbImages = [], lbIndex = 0;
-let selectedSize = null, selectedColor = null;
-
-/* ═══════════ NAV ═══════════ */
-function go(page, filter){
-  document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
-  const el = document.getElementById('page-' + page);
-  if(el) el.classList.remove('hidden');
-  document.getElementById('mobileMenu').classList.add('hidden');
-  document.getElementById('stickyBar').classList.remove('show');
-  window.scrollTo({top:0, behavior:'smooth'});
-
-  if(page === 'home') renderHome();
-  if(page === 'shop'){ currentFilter = filter || 'all'; currentSort = 'featured'; renderShop(); }
-  if(page === 'cart') renderCart();
-  if(page === 'wishlist') renderWishlist();
-
-  setTimeout(() => { lucide.createIcons(); observeReveals(); if(heroSwiper) heroSwiper.update(); }, 40);
-}
-
-function toggleMenu(){ document.getElementById('mobileMenu').classList.toggle('hidden'); }
-
-/* ═══════════ SEARCH ═══════════ */
-function openSearch(){
-  const ov = document.getElementById('searchOverlay');
-  ov.classList.remove('hidden'); ov.classList.add('flex');
-  setTimeout(() => document.getElementById('searchInput').focus(), 100);
-  renderSearchResults('');
-}
-function closeSearch(){
-  const ov = document.getElementById('searchOverlay');
-  ov.classList.add('hidden'); ov.classList.remove('flex');
-  document.getElementById('searchInput').value = '';
-}
-document.addEventListener('input', (e) => { if(e.target.id === 'searchInput') renderSearchResults(e.target.value); });
-document.addEventListener('keydown', (e) => { if(e.key === 'Escape'){ closeSearch(); closeLightbox(); } });
-document.getElementById('searchOverlay').addEventListener('click', (e) => { if(e.target.id === 'searchOverlay') closeSearch(); });
-
-function renderSearchResults(q){
-  const box = document.getElementById('searchResults');
-  const query = q.toLowerCase().trim();
-  const results = query ? products.filter(p => p.name.toLowerCase().includes(query) || p.cat.includes(query)) : products.slice(0,4);
-  if(results.length === 0){
-    box.innerHTML = `<div class="p-8 text-center text-ink-800/50 text-sm">No products found for "${q}"</div>`;
-    return;
-  }
-  box.innerHTML = results.map(p => `
-    <div onclick="closeSearch(); openProduct(${p.id})" class="flex items-center gap-4 p-3 rounded-2xl hover:bg-sage-50 cursor-pointer transition">
-      <div class="w-14 h-14 rounded-xl overflow-hidden bg-sage-100 shrink-0">
-        <img src="${p.images[0]}" class="w-full h-full object-cover" alt="">
-      </div>
-      <div class="flex-1 min-w-0">
-        <div class="text-sm font-medium truncate">${p.name}</div>
-        <div class="text-xs text-sage-600 font-semibold">Rs. ${p.price.toLocaleString()}</div>
-      </div>
-      <i data-lucide="arrow-right" class="w-4 h-4 text-ink-800/30"></i>
-    </div>`).join('');
-  lucide.createIcons();
-}
-
-/* ═══════════ REVEAL ═══════════ */
-function observeReveals(){
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal:not(.in)').forEach(el => io.observe(el));
-}
-
-/* ═══════════ HERO SWIPER ═══════════ */
-function initHeroSwiper(){
-  if(heroSwiper) heroSwiper.destroy(true, true);
-  heroSwiper = new Swiper('.heroSwiper', {
-    loop: true,
-    autoplay: { delay: 6000, disableOnInteraction: false },
-    effect: 'fade', fadeEffect: { crossFade: true }, speed: 1000,
-    pagination: { el: '.heroSwiper .swiper-pagination', clickable: true },
-    navigation: { nextEl: '.hero-next', prevEl: '.hero-prev' },
-  });
-}
-
-/* ═══════════ HOME ═══════════ */
-function renderHome(){
-  const best = products.filter(p => p.cat === 'bedding').slice(0,4);
-  const acc  = products.filter(p => p.cat === 'accessories').slice(0,4);
-  document.getElementById('homeGrid').innerHTML = best.map(cardHTML).join('');
-  document.getElementById('homeAccessories').innerHTML = acc.map(cardHTML).join('');
-  lucide.createIcons(); observeReveals();
-}
-
-/* ═══════════ SHOP ═══════════ */
-function renderShop(){
-  let list = [...products];
-  if(currentFilter === 'bedding') list = list.filter(p => p.cat === 'bedding');
-  if(currentFilter === 'accessories') list = list.filter(p => p.cat === 'accessories');
-  if(currentFilter === 'sale') list = list.filter(p => p.old);
-  if(currentFilter === 'new') list = list.filter(p => p.badge === 'New');
-  if(currentSort === 'low') list.sort((a,b) => a.price - b.price);
-  if(currentSort === 'high') list.sort((a,b) => b.price - a.price);
-  if(currentSort === 'rating') list.sort((a,b) => b.rating - a.rating);
-
-  const labels = { all:'All products', bedding:'Bedding', accessories:'Accessories', sale:'On Sale', new:'New Arrivals' };
-  const titles = { all:'Shop the collection', bedding:'Bedding Sets', accessories:'Accessories', sale:'On Sale', new:'New In' };
-  const descs = {
-    all:'Discover handcrafted luxury bedding and accessories.',
-    bedding:'Quilted, embroidered and heirloom-quality bedding sets.',
-    accessories:'Finishing touches that tie the whole room together.',
-    sale:'Limited-time savings on our most-loved pieces.',
-    new:'Fresh from the atelier — the latest arrivals.'
-  };
-  document.getElementById('shopLabel').textContent = labels[currentFilter];
-  document.getElementById('shopTitle').textContent = titles[currentFilter];
-  document.getElementById('shopDesc').textContent = descs[currentFilter];
-  document.getElementById('sortSelect').value = currentSort;
-
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    const active = btn.dataset.filter === currentFilter;
-    btn.className = `filter-btn px-4 py-2 rounded-full text-xs font-semibold transition-all ${active ? 'bg-sage-800 text-cream-100' : 'bg-sage-100 text-sage-800 hover:bg-sage-200'}`;
-  });
-
-  const grid = document.getElementById('shopGrid');
-  const empty = document.getElementById('shopEmpty');
-  if(list.length === 0){ grid.innerHTML=''; empty.classList.remove('hidden'); }
-  else { grid.innerHTML = list.map(cardHTML).join(''); empty.classList.add('hidden'); }
-  lucide.createIcons(); observeReveals();
-}
-function filterShop(f){ currentFilter = f; renderShop(); }
-function sortShop(s){ currentSort = s; renderShop(); }
-
-/* ═══════════ PRODUCT CARD — with more details ═══════════ */
-function cardHTML(p){
-  const discount = p.old ? Math.round((1 - p.price/p.old)*100) : 0;
-  const isWished = wishlist.includes(p.id);
-  const secondaryImg = p.images[1] || p.images[0];
-  const colorDots = (p.colors || []).slice(0,4).map(c => `<span class="w-3.5 h-3.5 rounded-full border border-white shadow-sm" style="background:${c}"></span>`).join('');
-  return `
-    <div class="group bg-white rounded-3xl overflow-hidden border border-sage-100 hover:border-sage-300 transition-all duration-500 hover:shadow-2xl hover:shadow-ink-900/8 hover:-translate-y-1.5 cursor-pointer reveal">
-      <div class="relative aspect-[4/5] overflow-hidden bg-sage-100 card-img-wrap">
-        <img src="${p.images[0]}" alt="${p.name}" loading="lazy" class="card-img-primary" onclick="openProduct(${p.id})" />
-        <img src="${secondaryImg}" alt="${p.name}" loading="lazy" class="card-img-secondary" onclick="openProduct(${p.id})" />
-        ${p.badge ? `<span class="absolute top-3 left-3 z-10 ${p.badge==='Sale'?'bg-terra-500':'bg-sage-800'} text-white text-[10px] font-bold tracking-wider uppercase px-3 py-1.5 rounded-full shadow-lg">${discount ? `-${discount}%` : p.badge}</span>` : ''}
-        <button onclick="event.stopPropagation(); toggleWishlist(${p.id})" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/95 backdrop-blur flex items-center justify-center hover:bg-white transition-all shadow-md hover:scale-110" title="Wishlist">
-          <i data-lucide="heart" class="w-4 h-4 ${isWished ? 'text-terra-500 fill-terra-500' : 'text-ink-800'}"></i>
-        </button>
-        <button onclick="event.stopPropagation(); openLightbox(${p.id}, 0)" class="absolute bottom-3 right-3 z-10 w-9 h-9 rounded-full bg-white/95 backdrop-blur flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 shadow-md hover:scale-110" title="Quick view">
-          <i data-lucide="expand" class="w-4 h-4 text-ink-800"></i>
-        </button>
-        <button onclick="event.stopPropagation(); openProduct(${p.id})" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/95 backdrop-blur flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg hover:scale-110" title="View details">
-          <i data-lucide="eye" class="w-5 h-5 text-ink-800"></i>
-        </button>
-        <button onclick="event.stopPropagation(); addToCart(${p.id})" class="absolute bottom-3 left-3 right-3 z-10 bg-sage-800 text-cream-100 py-3 rounded-2xl text-xs font-semibold opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-300 flex items-center justify-center gap-2 hover:bg-sage-700 shadow-lg">
-          <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i> Quick add
-        </button>
-      </div>
-      <div class="p-4 lg:p-5">
-        <div class="flex items-center gap-1.5 mb-2">
-          <span class="text-gold-500 text-[11px]">★★★★★</span>
-          <span class="text-[11px] text-ink-800/50 ml-0.5">${p.rating} (${p.reviews})</span>
-          ${p.sold ? `<span class="text-[10px] text-ink-800/40 ml-auto">${p.sold}+ sold</span>` : ''}
-        </div>
-        <h3 class="text-[13px] lg:text-sm font-medium leading-snug mb-2.5 min-h-[38px] line-clamp-2" onclick="openProduct(${p.id})">${p.name}</h3>
-        <div class="flex items-center gap-1.5 mb-3">${colorDots}</div>
-        <div class="flex items-baseline gap-2">
-          <span class="text-base lg:text-[17px] font-semibold">Rs. ${p.price.toLocaleString()}</span>
-          ${p.old ? `<span class="text-xs text-ink-800/40 line-through">Rs. ${p.old.toLocaleString()}</span>` : ''}
-        </div>
-        <div class="flex items-center gap-1 mt-2.5 text-[10px] text-sage-600 font-medium">
-          <i data-lucide="truck" class="w-3 h-3"></i> ${p.delivery}
-        </div>
-      </div>
-    </div>`;
-}
-
-/* ═══════════ WISHLIST ═══════════ */
-function toggleWishlist(id){
-  const idx = wishlist.indexOf(id);
-  if(idx > -1){ wishlist.splice(idx, 1); showToast('Removed from wishlist'); }
-  else { wishlist.push(id); showToast('❤ Added to wishlist'); }
-  localStorage.setItem('ph_wish_v5', JSON.stringify(wishlist));
-  updateWishCount();
-  const activePage = document.querySelector('.page:not(.hidden)');
-  if(activePage){
-    if(activePage.id === 'page-home') renderHome();
-    if(activePage.id === 'page-shop') renderShop();
-    if(activePage.id === 'page-wishlist') renderWishlist();
-    if(activePage.id === 'page-product' && currentProductId) openProduct(currentProductId);
-  }
-}
-function updateWishCount(){ document.getElementById('wishCount').textContent = wishlist.length; }
-
-function renderWishlist(){
-  const grid = document.getElementById('wishlistGrid');
-  const items = products.filter(p => wishlist.includes(p.id));
-  if(items.length === 0){
-    grid.innerHTML = `
-      <div class="col-span-full text-center py-16">
-        <div class="w-24 h-24 rounded-full bg-sage-100 flex items-center justify-center mx-auto mb-6"><i data-lucide="heart" class="w-10 h-10 text-sage-400"></i></div>
-        <h3 class="font-display text-2xl font-semibold mb-3">Your wishlist is empty</h3>
-        <p class="text-ink-800/60 mb-6">Tap the heart on any product to save it here.</p>
-        <button onclick="go('shop')" class="inline-flex items-center gap-2 bg-sage-800 text-cream-100 px-8 py-4 rounded-full text-sm font-semibold hover:bg-sage-700 transition-all">Browse products <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
-      </div>`;
-    lucide.createIcons(); return;
-  }
-  grid.innerHTML = items.map(cardHTML).join('');
-  lucide.createIcons(); observeReveals();
-}
-
-/* ═══════════ PRODUCT DETAIL ═══════════ */
-function openProduct(id){
-  const p = products.find(x => x.id === id);
-  if(!p) return;
-  currentProductId = id;
-  currentQty = 1;
-  selectedSize = p.sizes[0];
-  selectedColor = p.colors[0];
-  const discount = p.old ? Math.round((1 - p.price/p.old)*100) : 0;
-  const isWished = wishlist.includes(p.id);
-
-  const ratingDist = [78, 16, 4, 1, 1];
-
-  document.getElementById('productDetail').innerHTML = `
-    <button onclick="go('shop')" class="inline-flex items-center gap-2 text-sm text-ink-800/60 hover:text-ink-900 mb-8 transition-colors animate-fade-up">
-      <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to shop
-    </button>
-
-    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16">
-      <div class="animate-fade-up">
-        <div class="swiper productSwiper rounded-[32px] overflow-hidden bg-sage-100 relative">
-          <div class="swiper-wrapper">
-            ${p.images.map((img, i) => `
-              <div class="swiper-slide">
-                <div class="aspect-square cursor-zoom-in" onclick="openLightbox(${p.id}, ${i})">
-                  <img src="${img}" alt="${p.name}" class="w-full h-full object-cover">
-                </div>
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer class="bg-ink-900 text-cream-100/70 border-t border-ink-800">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
+      <div class="grid grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+        <div class="col-span-2">
+          <div class="flex items-center gap-2.5 mb-4">
+            <div class="w-9 h-9 rounded-full bg-cream-100 flex items-center justify-center">
+              <i data-lucide="feather" class="w-4 h-4 text-sage-900"></i>
+            </div>
+            <div>
+              <div class="font-display text-[20px] font-semibold text-cream-100 leading-none">
+                PARADISE<span class="text-terra-400 font-normal text-[15px]">home</span>
               </div>
-            `).join('')}
+              <div class="text-[9px] tracking-[.28em] text-sage-400 font-medium mt-0.5">QUIET LUXURY</div>
+            </div>
           </div>
-          <div class="swiper-pagination"></div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-          ${p.badge ? `<span class="absolute top-5 left-5 z-10 ${p.badge==='Sale'?'bg-terra-500':'bg-sage-800'} text-white text-xs font-bold tracking-wider uppercase px-4 py-2 rounded-full shadow-lg">${discount ? `-${discount}% OFF` : p.badge}</span>` : ''}
-          <button onclick="openLightbox(${p.id}, 0)" class="absolute bottom-5 right-5 z-10 w-11 h-11 rounded-full bg-white/95 backdrop-blur flex items-center justify-center shadow-lg hover:scale-110 transition-transform" title="View fullscreen">
-            <i data-lucide="expand" class="w-5 h-5 text-ink-800"></i>
-          </button>
-        </div>
-        <div class="flex items-center gap-2 mt-4 text-xs text-ink-800/50">
-          <i data-lucide="zoom-in" class="w-3.5 h-3.5"></i> Click any image to open fullscreen gallery
-        </div>
-      </div>
-
-      <div class="animate-fade-up" style="animation-delay:.1s">
-        <div class="flex items-center gap-2 mb-3">
-          <span class="text-gold-500">★★★★★</span>
-          <span class="text-sm text-ink-800/60">${p.rating} · ${p.reviews} reviews · ${p.sold}+ sold</span>
-        </div>
-        <h1 class="font-display text-3xl lg:text-5xl font-semibold leading-tight mb-5">${p.name}</h1>
-        <div class="flex items-baseline gap-3 mb-6 flex-wrap">
-          <span class="font-display text-3xl lg:text-4xl font-semibold">Rs. ${p.price.toLocaleString()}</span>
-          ${p.old ? `<span class="text-lg text-ink-800/40 line-through">Rs. ${p.old.toLocaleString()}</span>` : ''}
-          ${discount ? `<span class="bg-terra-100 text-terra-700 text-xs font-bold px-3 py-1.5 rounded-full">SAVE ${discount}%</span>` : ''}
-        </div>
-
-        <p class="text-ink-800/70 leading-relaxed mb-4">${p.desc}</p>
-        <p class="text-ink-800/70 leading-relaxed mb-6 text-sm">${p.longDesc}</p>
-
-        <!-- Color selector -->
-        <div class="mb-6">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-sm font-semibold">Color</span>
-            <span class="text-xs text-ink-800/50" id="colorName">Selected</span>
-          </div>
+          <p class="text-xs sm:text-sm leading-relaxed max-w-sm mb-5 text-cream-100/60">
+            Heirloom textiles, detailed embroidery, and quilted bedding crafted to elevate your daily living into
+            timeless comfort.
+          </p>
           <div class="flex gap-2.5">
-            ${p.colors.map((c, i) => `
-              <button onclick="selectColor(${i}, '${c}')" class="color-btn w-10 h-10 rounded-full border-2 ${i===0?'border-sage-800':'border-transparent'} transition-all hover:scale-110 relative" style="background:${c}">
-                ${i===0 ? '<span class="absolute inset-0 flex items-center justify-center"><i data-lucide="check" class="w-4 h-4 text-white drop-shadow"></i></span>' : ''}
-              </button>
-            `).join('')}
+            <a href="#"
+              class="w-9 h-9 rounded-full bg-cream-100/10 flex items-center justify-center hover:bg-terra-500 transition-colors text-cream-100"
+              aria-label="Instagram"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+            <a href="#"
+              class="w-9 h-9 rounded-full bg-cream-100/10 flex items-center justify-center hover:bg-terra-500 transition-colors text-cream-100"
+              aria-label="Facebook"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+            <a href="#"
+              class="w-9 h-9 rounded-full bg-cream-100/10 flex items-center justify-center hover:bg-terra-500 transition-colors text-cream-100"
+              aria-label="Twitter"><i data-lucide="twitter" class="w-4 h-4"></i></a>
           </div>
         </div>
 
-        <!-- Size selector -->
-        <div class="mb-6">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-sm font-semibold">Size</span>
-            <button onclick="showToast('Size guide coming soon')" class="text-xs text-sage-600 hover:text-sage-700 font-medium flex items-center gap-1"><i data-lucide="ruler" class="w-3 h-3"></i> Size guide</button>
-          </div>
-          <div class="flex flex-wrap gap-2">
-            ${p.sizes.map((s, i) => `
-              <button onclick="selectSize(${i}, '${s}')" class="size-btn px-5 py-2.5 rounded-xl border-[1.5px] ${i===0?'border-sage-800 bg-sage-800 text-cream-100':'border-sage-200 hover:border-sage-400'} text-sm font-medium transition-all">
-                ${s}
-              </button>
-            `).join('')}
-          </div>
-        </div>
-
-        <!-- Quantity + Actions -->
-        <div class="flex items-center gap-5 mb-6">
-          <span class="text-sm font-semibold">Quantity</span>
-          <div class="flex items-center border-[1.5px] border-sage-200 rounded-full overflow-hidden">
-            <button onclick="changeQty(-1)" class="w-11 h-11 hover:bg-sage-100 transition-colors flex items-center justify-center"><i data-lucide="minus" class="w-4 h-4"></i></button>
-            <span id="qtyDisplay" class="w-12 text-center font-semibold">1</span>
-            <button onclick="changeQty(1)" class="w-11 h-11 hover:bg-sage-100 transition-colors flex items-center justify-center"><i data-lucide="plus" class="w-4 h-4"></i></button>
-          </div>
-          <span class="text-xs text-sage-600 font-medium" id="stockInfo">In stock</span>
-        </div>
-
-        <div class="flex flex-col sm:flex-row gap-3 mb-6">
-          <button onclick="addToCart(${p.id}, currentQty)" class="flex-1 bg-sage-800 text-cream-100 py-4 rounded-2xl text-sm font-semibold hover:bg-sage-700 transition-all hover:shadow-xl hover:shadow-sage-800/20 flex items-center justify-center gap-2">
-            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Add to cart
-          </button>
-          <button onclick="toggleWishlist(${p.id})" class="sm:w-auto px-6 py-4 rounded-2xl border-[1.5px] border-sage-200 hover:border-terra-400 hover:bg-terra-50 transition-all flex items-center justify-center gap-2 text-sm font-semibold">
-            <i data-lucide="heart" class="w-4 h-4 ${isWished ? 'text-terra-500 fill-terra-500' : ''}"></i> ${isWished ? 'Saved' : 'Save'}
-          </button>
-        </div>
-
-        <!-- Delivery highlight -->
-        <div class="bg-sage-50 rounded-2xl p-4 mb-6 flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center shrink-0"><i data-lucide="truck" class="w-4 h-4 text-sage-600"></i></div>
-          <div class="text-sm">
-            <div class="font-semibold">${p.delivery}</div>
-            <div class="text-xs text-ink-800/55">Free returns within 30 days</div>
-          </div>
-        </div>
-
-        <!-- Product details list -->
-        <div class="border-t border-sage-200 pt-6">
-          <h3 class="font-semibold mb-3 text-sm tracking-wide">Product Details</h3>
-          <ul class="space-y-2.5">
-            ${p.details.map(d => `<li class="flex items-start gap-2.5 text-sm text-ink-800/70"><i data-lucide="check" class="w-4 h-4 text-sage-600 shrink-0 mt-0.5"></i> ${d}</li>`).join('')}
+        <div>
+          <h4 class="text-cream-100 font-semibold text-xs tracking-wider uppercase mb-4">Collections</h4>
+          <ul class="space-y-2.5 text-xs sm:text-sm">
+            <li><a href="pages/shop.html#bedding" class="hover:text-cream-100 transition-colors">Bedding Sets</a></li>
+            <li><a href="pages/shop.html#accessories" class="hover:text-cream-100 transition-colors">Cushions &
+                Throws</a></li>
+            <li><a href="pages/shop.html#new" class="hover:text-cream-100 transition-colors">New Arrivals</a></li>
+            <li><a href="pages/shop.html#sale" class="hover:text-terra-400 transition-colors text-terra-400">Seasonal
+                Sale</a></li>
           </ul>
         </div>
 
-        <!-- Trust -->
-        <div class="grid grid-cols-2 gap-3 pt-8 mt-8 border-t border-sage-200">
-          <div class="flex items-center gap-3 text-sm">
-            <div class="w-10 h-10 rounded-xl bg-sage-100 flex items-center justify-center shrink-0"><i data-lucide="shield-check" class="w-4 h-4 text-sage-600"></i></div>
-            <div><div class="font-semibold text-[13px]">Secure payment</div><div class="text-[11px] text-ink-800/55">SSL protected</div></div>
-          </div>
-          <div class="flex items-center gap-3 text-sm">
-            <div class="w-10 h-10 rounded-xl bg-sage-100 flex items-center justify-center shrink-0"><i data-lucide="rotate-ccw" class="w-4 h-4 text-sage-600"></i></div>
-            <div><div class="font-semibold text-[13px]">30-day returns</div><div class="text-[11px] text-ink-800/55">Hassle free</div></div>
-          </div>
+        <div>
+          <h4 class="text-cream-100 font-semibold text-xs tracking-wider uppercase mb-4">Client Care</h4>
+          <ul class="space-y-2.5 text-xs sm:text-sm">
+            <li><a href="pages/contact.html" class="hover:text-cream-100 transition-colors">Help Center</a></li>
+            <li><a href="pages/contact.html" class="hover:text-cream-100 transition-colors">Delivery & Returns</a></li>
+            <li><a href="pages/contact.html" class="hover:text-cream-100 transition-colors">Size Guide</a></li>
+            <li><a href="pages/contact.html" class="hover:text-cream-100 transition-colors">Care Instructions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-cream-100 font-semibold text-xs tracking-wider uppercase mb-4">About</h4>
+          <ul class="space-y-2.5 text-xs sm:text-sm">
+            <li><a href="pages/about.html" class="hover:text-cream-100 transition-colors">Our Philosophy</a></li>
+            <li><a href="pages/about.html" class="hover:text-cream-100 transition-colors">Artisanal Craft</a></li>
+            <li><a href="pages/about.html" class="hover:text-cream-100 transition-colors">Sustainability</a></li>
+            <li><a href="pages/contact.html" class="hover:text-cream-100 transition-colors">Atelier Visit</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div
+        class="pt-8 border-t border-cream-100/10 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-cream-100/50">
+        <div>© 2025 Paradise Home Store. All rights reserved.</div>
+        <div class="flex items-center gap-1.5">Artisanally made with <span class="text-terra-400">♥</span> in India
         </div>
       </div>
     </div>
-
-    <!-- Rating breakdown + reviews -->
-    <div class="mt-20 grid lg:grid-cols-3 gap-8">
-      <div class="bg-white rounded-3xl p-8 border border-sage-100">
-        <h3 class="font-display text-2xl font-semibold mb-2">Customer Reviews</h3>
-        <div class="flex items-baseline gap-3 mb-5">
-          <span class="font-display text-5xl font-semibold">${p.rating}</span>
-          <div>
-            <div class="text-gold-500">★★★★★</div>
-            <div class="text-xs text-ink-800/55">${p.reviews} reviews</div>
-          </div>
-        </div>
-        <div class="space-y-2.5">
-          ${ratingDist.map((pct, i) => `
-            <div class="flex items-center gap-3 text-xs">
-              <span class="w-8 text-ink-800/60 font-medium">${5-i}★</span>
-              <div class="rating-bar flex-1"><div style="width:${pct}%"></div></div>
-              <span class="w-10 text-right text-ink-800/50">${pct}%</span>
-            </div>
-          `).join('')}
-        </div>
-        <button onclick="showToast('Review form coming soon')" class="w-full mt-6 border-[1.5px] border-sage-200 text-ink-800 py-3 rounded-full text-sm font-semibold hover:bg-sage-50 transition">Write a review</button>
-      </div>
-
-      <div class="lg:col-span-2 space-y-4">
-        ${[
-          {name:"Fatima A.", img:40, date:"2 weeks ago", text:"Absolutely in love with this set! The fabric feels incredibly premium and the stitching is flawless. Worth every rupee.", stars:5},
-          {name:"Bilal M.", img:15, date:"1 month ago", text:"Bought this for my wife and she adores it. The color is exactly as pictured and the packaging was beautiful.", stars:5},
-          {name:"Zara H.", img:44, date:"2 months ago", text:"Good quality overall. Would have loved slightly bigger pillowcases but that's minor. Would buy again.", stars:4}
-        ].map(r => `
-          <div class="bg-white rounded-3xl p-6 border border-sage-100">
-            <div class="flex items-center gap-3 mb-3">
-              <img src="https://i.pravatar.cc/80?img=${r.img}" class="w-10 h-10 rounded-full" alt="">
-              <div class="flex-1">
-                <div class="flex items-center gap-2">
-                  <span class="text-sm font-semibold">${r.name}</span>
-                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-sage-500"></i>
-                  <span class="text-[10px] text-ink-800/45 bg-sage-50 px-2 py-0.5 rounded-full">Verified</span>
-                </div>
-                <div class="text-xs text-ink-800/50">${r.date}</div>
-              </div>
-              <div class="text-gold-500 text-sm">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div>
-            </div>
-            <p class="text-sm text-ink-800/75 leading-relaxed">${r.text}</p>
-          </div>
-        `).join('')}
-      </div>
-    </div>`;
-
-  go('product');
-
-  setTimeout(() => {
-    if(productSwiper) productSwiper.destroy(true, true);
-    productSwiper = new Swiper('.productSwiper', {
-      loop: true,
-      autoplay: { delay: 5000, disableOnInteraction: false },
-      pagination: { el: '.productSwiper .swiper-pagination', clickable: true, dynamicBullets: true },
-      navigation: { nextEl: '.productSwiper .swiper-button-next', prevEl: '.productSwiper .swiper-button-prev' },
-      speed: 600,
-    });
-    lucide.createIcons();
-    setupStickyBar(p);
-  }, 100);
-}
-
-function selectColor(i, color){
-  selectedColor = color;
-  document.querySelectorAll('.color-btn').forEach((btn, idx) => {
-    btn.className = `color-btn w-10 h-10 rounded-full border-2 transition-all hover:scale-110 relative ${idx===i?'border-sage-800':'border-transparent'}`;
-    btn.innerHTML = idx===i ? '<span class="absolute inset-0 flex items-center justify-center"><i data-lucide="check" class="w-4 h-4 text-white drop-shadow"></i></span>' : '';
-  });
-  lucide.createIcons();
-}
-
-function selectSize(i, size){
-  selectedSize = size;
-  document.querySelectorAll('.size-btn').forEach((btn, idx) => {
-    btn.className = `size-btn px-5 py-2.5 rounded-xl border-[1.5px] text-sm font-medium transition-all ${idx===i?'border-sage-800 bg-sage-800 text-cream-100':'border-sage-200 hover:border-sage-400'}`;
-  });
-}
-
-function changeQty(delta){
-  currentQty = Math.max(1, currentQty + delta);
-  document.getElementById('qtyDisplay').textContent = currentQty;
-}
-
-/* ═══════════ STICKY BAR ═══════════ */
-function setupStickyBar(p){
-  document.getElementById('stickyImg').innerHTML = `<img src="${p.images[0]}" class="w-full h-full object-cover">`;
-  document.getElementById('stickyName').textContent = p.name;
-  document.getElementById('stickyPrice').textContent = `Rs. ${p.price.toLocaleString()}`;
-  document.getElementById('stickyAddBtn').onclick = () => addToCart(p.id, currentQty);
-  // Show sticky bar after scrolling past product hero
-  const handler = () => {
-    const bar = document.getElementById('stickyBar');
-    const page = document.getElementById('page-product');
-    if(page.classList.contains('hidden')){ bar.classList.remove('show'); return; }
-    if(window.scrollY > 500) bar.classList.add('show');
-    else bar.classList.remove('show');
-  };
-  window.removeEventListener('scroll', window._stickyHandler);
-  window._stickyHandler = handler;
-  window.addEventListener('scroll', handler);
-}
-
-/* ═══════════ LIGHTBOX MODAL ═══════════ */
-function openLightbox(productId, index){
-  const p = products.find(x => x.id === productId);
-  if(!p) return;
-  lbImages = p.images;
-  lbIndex = index || 0;
-  updateLightbox();
-  document.getElementById('lightbox').classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
-
-function updateLightbox(){
-  document.getElementById('lightboxImg').src = lbImages[lbIndex];
-  document.getElementById('lightboxCounter').textContent = `${lbIndex + 1} / ${lbImages.length}`;
-}
-
-function lightboxPrev(){ lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length; updateLightbox(); }
-function lightboxNext(){ lbIndex = (lbIndex + 1) % lbImages.length; updateLightbox(); }
-
-function closeLightbox(){
-  document.getElementById('lightbox').classList.remove('show');
-  document.body.style.overflow = '';
-}
-
-document.getElementById('lightbox').addEventListener('click', (e) => {
-  if(e.target.id === 'lightbox') closeLightbox();
-});
-
-document.addEventListener('keydown', (e) => {
-  const lb = document.getElementById('lightbox');
-  if(!lb.classList.contains('show')) return;
-  if(e.key === 'ArrowLeft') lightboxPrev();
-  if(e.key === 'ArrowRight') lightboxNext();
-  if(e.key === 'Escape') closeLightbox();
-});
-
-/* ═══════════ CART ═══════════ */
-function addToCart(id, qty = 1){
-  const p = products.find(x => x.id === id);
-  const existing = cart.find(x => x.id === id);
-  if(existing) existing.qty += qty;
-  else cart.push({ id, qty });
-  saveCart(); updateCartCount();
-  showToast(`${p.name.split('–')[0].trim()} added to cart`);
-  if(!document.getElementById('page-cart').classList.contains('hidden')) renderCart();
-}
-function removeFromCart(id){ cart = cart.filter(x => x.id !== id); saveCart(); updateCartCount(); renderCart(); }
-function updateQty(id, delta){
-  const item = cart.find(x => x.id === id);
-  if(!item) return;
-  item.qty = Math.max(1, item.qty + delta);
-  saveCart(); updateCartCount(); renderCart();
-}
-function saveCart(){ localStorage.setItem('ph_cart_v5', JSON.stringify(cart)); }
-function updateCartCount(){
-  const total = cart.reduce((s, i) => s + i.qty, 0);
-  const el = document.getElementById('cartCount');
-  el.textContent = total;
-  el.classList.add('bump');
-  setTimeout(() => el.classList.remove('bump'), 400);
-}
-
-function renderCart(){
-  const layout = document.getElementById('cartLayout');
-  if(cart.length === 0){
-    layout.innerHTML = `
-      <div class="text-center py-20 animate-fade-up">
-        <div class="w-24 h-24 rounded-full bg-sage-100 flex items-center justify-center mx-auto mb-6"><i data-lucide="shopping-bag" class="w-10 h-10 text-sage-500"></i></div>
-        <h2 class="font-display text-3xl font-semibold mb-3">Your cart is empty</h2>
-        <p class="text-ink-800/60 mb-8">Looks like you haven't added anything yet.</p>
-        <button onclick="go('shop')" class="inline-flex items-center gap-2 bg-sage-800 text-cream-100 px-8 py-4 rounded-full text-sm font-semibold hover:bg-sage-700 transition-all">Start shopping <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
-      </div>`;
-    lucide.createIcons(); return;
-  }
-
-  let subtotal = 0;
-  const itemsHTML = cart.map(item => {
-    const p = products.find(x => x.id === item.id);
-    const line = p.price * item.qty;
-    subtotal += line;
-    return `
-      <div class="flex gap-4 lg:gap-5 bg-white p-4 lg:p-5 rounded-3xl border border-sage-100 mb-3 animate-fade-up">
-        <div class="w-20 h-20 lg:w-24 lg:h-24 rounded-2xl overflow-hidden bg-sage-100 shrink-0 cursor-pointer" onclick="openProduct(${p.id})">
-          <img src="${p.images[0]}" class="w-full h-full object-cover" alt="">
-        </div>
-        <div class="flex-1 min-w-0">
-          <div class="flex justify-between gap-3">
-            <h4 class="font-medium text-sm leading-snug line-clamp-2 mb-1">${p.name}</h4>
-            <button onclick="removeFromCart(${p.id})" class="text-ink-800/40 hover:text-terra-500 transition-colors shrink-0"><i data-lucide="x" class="w-4 h-4"></i></button>
-          </div>
-          <div class="text-xs text-sage-600 font-semibold mb-3">Rs. ${p.price.toLocaleString()}</div>
-          <div class="flex items-center justify-between">
-            <div class="flex items-center border-[1.5px] border-sage-200 rounded-full overflow-hidden">
-              <button onclick="updateQty(${p.id},-1)" class="w-8 h-8 hover:bg-sage-100 flex items-center justify-center"><i data-lucide="minus" class="w-3 h-3"></i></button>
-              <span class="w-8 text-center text-sm font-semibold">${item.qty}</span>
-              <button onclick="updateQty(${p.id},1)" class="w-8 h-8 hover:bg-sage-100 flex items-center justify-center"><i data-lucide="plus" class="w-3 h-3"></i></button>
-            </div>
-            <div class="font-semibold text-sm">Rs. ${line.toLocaleString()}</div>
-          </div>
-        </div>
-      </div>`;
-  }).join('');
-
-  const shipping = subtotal > 5000 ? 0 : 250;
-  const tax = Math.round(subtotal * 0.05);
-  const total = subtotal + shipping + tax;
-
-  layout.innerHTML = `
-    <div class="animate-fade-up">
-      <button onclick="go('shop')" class="inline-flex items-center gap-2 text-sm text-ink-800/60 hover:text-ink-900 mb-8 transition-colors">
-        <i data-lucide="arrow-left" class="w-4 h-4"></i> Continue shopping
-      </button>
-      <h1 class="font-display text-4xl lg:text-5xl font-semibold mb-2">Your cart</h1>
-      <p class="text-ink-800/60 mb-10">${cart.length} item${cart.length>1?'s':''} in your bag</p>
-    </div>
-
-    <div class="grid lg:grid-cols-[1fr_400px] gap-8 lg:gap-10 items-start">
-      <div>${itemsHTML}</div>
-      <div class="lg:sticky lg:top-24 bg-white rounded-3xl p-6 lg:p-8 border border-sage-100 animate-fade-up" style="animation-delay:.1s">
-        <h3 class="font-display text-2xl font-semibold mb-6">Order Summary</h3>
-        <div class="space-y-3 pb-5 border-b border-sage-200">
-          <div class="flex justify-between text-sm"><span class="text-ink-800/60">Subtotal</span><span class="font-medium">Rs. ${subtotal.toLocaleString()}</span></div>
-          <div class="flex justify-between text-sm"><span class="text-ink-800/60">Shipping</span><span class="font-medium ${shipping===0?'text-sage-600':''}">${shipping===0?'FREE':'Rs. '+shipping}</span></div>
-          <div class="flex justify-between text-sm"><span class="text-ink-800/60">Tax (5%)</span><span class="font-medium">Rs. ${tax.toLocaleString()}</span></div>
-        </div>
-        <div class="flex justify-between items-baseline pt-5 mb-6">
-          <span class="font-semibold">Total</span>
-          <span class="font-display text-2xl font-semibold">Rs. ${total.toLocaleString()}</span>
-        </div>
-        <div class="bg-sage-50 rounded-2xl p-3 mb-5 flex items-center gap-3 text-xs">
-          <i data-lucide="gift" class="w-5 h-5 text-sage-600 shrink-0"></i>
-          <span class="text-ink-800/70">Add Rs. ${Math.max(0, 5000 - subtotal).toLocaleString()} more for <strong>free shipping</strong></span>
-        </div>
-        <button onclick="checkout()" class="w-full bg-sage-800 text-cream-100 py-4 rounded-2xl text-sm font-semibold hover:bg-sage-700 transition-all hover:shadow-xl hover:shadow-sage-800/20 flex items-center justify-center gap-2">
-          Proceed to checkout <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </button>
-        <div class="flex items-center justify-center gap-2 mt-5 text-xs text-ink-800/55"><i data-lucide="lock" class="w-3.5 h-3.5"></i> Secure checkout</div>
-      </div>
-    </div>`;
-  lucide.createIcons(); observeReveals();
-}
-
-function checkout(){
-  if(cart.length === 0) return;
-  showToast('Order placed successfully! 🎉');
-  cart = []; saveCart(); updateCartCount();
-  setTimeout(() => go('home'), 1500);
-}
-
-/* ═══════════ AUTH ═══════════ */
-function toggleAuth(){
-  currentAuthMode = currentAuthMode === 'register' ? 'login' : 'register';
-  const isReg = currentAuthMode === 'register';
-  document.getElementById('authTitle').textContent = isReg ? 'Create account' : 'Welcome back';
-  document.getElementById('authSub').textContent = isReg ? 'Join Paradise and enjoy 10% off your first order.' : 'Sign in to your Paradise account.';
-  document.getElementById('nameField').style.display = isReg ? 'block' : 'none';
-  document.getElementById('authBtn').innerHTML = (isReg ? 'Create account' : 'Sign in') + ' <i data-lucide="arrow-right" class="w-4 h-4"></i>';
-  document.getElementById('switchText').innerHTML = isReg
-    ? 'Already have an account? <a onclick="toggleAuth()" class="text-terra-500 font-semibold cursor-pointer hover:underline">Sign in</a>'
-    : 'New to Paradise? <a onclick="toggleAuth()" class="text-terra-500 font-semibold cursor-pointer hover:underline">Create account</a>';
-  lucide.createIcons();
-}
-function handleAuth(e){
-  e.preventDefault();
-  const email = document.getElementById('authEmail').value;
-  showToast(`${currentAuthMode === 'register' ? 'Account created' : 'Signed in'} — ${email}`);
-  setTimeout(() => go('home'), 1200);
-}
-
-/* ═══════════ TOAST ═══════════ */
-let toastTimer;
-function showToast(msg){
-  const t = document.getElementById('toast');
-  document.getElementById('toastMsg').textContent = msg;
-  t.classList.remove('translate-y-32', 'opacity-0');
-  t.classList.add('translate-y-0', 'opacity-100');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => {
-    t.classList.add('translate-y-32', 'opacity-0');
-    t.classList.remove('translate-y-0', 'opacity-100');
-  }, 2500);
-}
-
-/* ═══════════ INIT ═══════════ */
-renderHome();
-updateCartCount();
-updateWishCount();
-lucide.createIcons();
-observeReveals();
-initHeroSwiper();
-</script>
+  </footer>
 
 </body>
+
 </html>

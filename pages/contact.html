@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Concierge & Contact — PARADISE HOME</title>
+  <meta name="description"
+    content="Reach our client care concierge for sizing consultations, bespoke orders, and order inquiries.">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['"Playfair Display"', 'serif'],
+            hand: ['"Caveat"', 'cursive']
+          },
+          colors: {
+            sage: { 50: '#f4f6f0', 100: '#e6ebdd', 200: '#cdd8bd', 300: '#a9bd92', 400: '#849c6b', 500: '#667e4d', 600: '#4f643c', 700: '#3f5030', 800: '#354228', 900: '#2d3823' },
+            terra: { 50: '#fdf5f1', 100: '#fae6dc', 200: '#f4c9b4', 300: '#eba285', 400: '#e07a55', 500: '#d15a35', 600: '#bd4425', 700: '#9d351f', 800: '#802f1e', 900: '#6b2b1d' },
+            cream: { 50: '#fdfbf7', 100: '#faf5eb', 200: '#f3e8d3', 300: '#e8d5b0' },
+            gold: { 400: '#d4b370', 500: '#c19a4d', 600: '#a67f3a' },
+            ink: { 700: '#3a352a', 800: '#2a261c', 900: '#1a1811' },
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap"
+    rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Luxury Stylesheet -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+
+  <!-- Core App Logic -->
+  <script src="../assets/js/app.js" defer></script>
+</head>
+
+<body data-page="contact" class="font-sans text-ink-800 bg-cream-50 antialiased overflow-x-hidden">
+
+  <!-- ═══════ ANNOUNCEMENT MARQUEE ═══════ -->
+  <div class="bg-ink-900 text-cream-100 text-[11px] tracking-[.18em] py-2.5 overflow-hidden border-b border-ink-800">
+    <div class="flex whitespace-nowrap marquee-track">
+      <div class="flex shrink-0">
+        <span class="mx-7">✦ FREE SHIPPING OVER RS. 5,000</span>
+        <span class="mx-7">✦ 10% OFF YOUR FIRST ORDER</span>
+        <span class="mx-7">✦ HANDCRAFTED HEIRLOOM TEXTILES</span>
+        <span class="mx-7">✦ 30-DAY SATISFACTION GUARANTEE</span>
+      </div>
+      <div class="flex shrink-0" aria-hidden="true">
+        <span class="mx-7">✦ FREE SHIPPING OVER RS. 5,000</span>
+        <span class="mx-7">✦ 10% OFF YOUR FIRST ORDER</span>
+        <span class="mx-7">✦ HANDCRAFTED HEIRLOOM TEXTILES</span>
+        <span class="mx-7">✦ 30-DAY SATISFACTION GUARANTEE</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ LUXURY STICKY HEADER ═══════ -->
+  <header class="sticky top-0 z-50 bg-cream-50/90 backdrop-blur-xl border-b border-sage-100">
+    <nav class="max-w-7xl mx-auto px-5 lg:px-8 h-[74px] flex items-center justify-between gap-4">
+      <a href="../index.html" class="group flex items-center gap-2.5 shrink-0" aria-label="Paradise Home">
+        <div
+          class="w-10 h-10 rounded-full bg-gradient-to-br from-sage-700 to-sage-900 flex items-center justify-center group-hover:rotate-12 transition-transform duration-500 shadow-md">
+          <i data-lucide="feather" class="w-4 h-4 text-gold-400"></i>
+        </div>
+        <div class="leading-none">
+          <div class="font-display text-[21px] font-semibold tracking-tight text-ink-900">
+            PARADISE<span class="text-terra-500 font-normal text-[16px]">home</span>
+          </div>
+          <div class="text-[9px] tracking-[.28em] text-sage-600 font-medium mt-0.5">QUIET LUXURY</div>
+        </div>
+      </a>
+
+      <div class="hidden lg:flex items-center gap-8 text-[13px] font-medium text-ink-800">
+        <a href="../index.html" class="hover:text-sage-700 transition-colors relative group py-1">
+          Home
+          <span
+            class="absolute bottom-0 left-0 w-0 h-[2px] bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="shop.html" class="hover:text-sage-700 transition-colors relative group py-1">
+          Shop All
+          <span
+            class="absolute bottom-0 left-0 w-0 h-[2px] bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="shop.html#bedding" class="hover:text-sage-700 transition-colors relative group py-1">
+          Bedding Sets
+          <span
+            class="absolute bottom-0 left-0 w-0 h-[2px] bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="shop.html#accessories" class="hover:text-sage-700 transition-colors relative group py-1">
+          Accessories
+          <span
+            class="absolute bottom-0 left-0 w-0 h-[2px] bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="about.html" class="hover:text-sage-700 transition-colors relative group py-1">
+          Our Story
+          <span
+            class="absolute bottom-0 left-0 w-0 h-[2px] bg-sage-600 group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="contact.html" class="text-sage-700 font-semibold relative group py-1">
+          Contact
+          <span class="absolute bottom-0 left-0 w-full h-[2px] bg-sage-700 rounded-full"></span>
+        </a>
+        <a href="shop.html#sale"
+          class="text-terra-500 font-semibold hover:text-terra-600 transition-colors flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-terra-500 animate-pulse"></span> Sale
+        </a>
+      </div>
+
+      <div class="flex items-center gap-1 sm:gap-2">
+        <button onclick="openSearch()" class="p-2.5 rounded-full hover:bg-sage-100 text-ink-800 transition-colors"
+          title="Search catalog">
+          <i data-lucide="search" class="w-[19px] h-[19px]"></i>
+        </button>
+        <button onclick="showToast('Click heart on any product to save it')"
+          class="relative p-2.5 rounded-full hover:bg-sage-100 text-ink-800 transition-colors" title="Wishlist">
+          <i data-lucide="heart" class="w-[19px] h-[19px]"></i>
+          <span data-wish-count
+            class="absolute -top-0.5 -right-0.5 bg-terra-500 text-white text-[10px] font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">0</span>
+        </button>
+        <a href="cart.html" class="relative p-2.5 rounded-full hover:bg-sage-100 text-ink-800 transition-colors"
+          title="Shopping Bag">
+          <i data-lucide="shopping-bag" class="w-[19px] h-[19px]"></i>
+          <span data-cart-count
+            class="absolute -top-0.5 -right-0.5 bg-sage-800 text-white text-[10px] font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">0</span>
+        </a>
+        <button class="lg:hidden p-2.5 rounded-full hover:bg-sage-100 text-ink-800 transition-colors ml-1"
+          onclick="toggleMobileMenu()">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobileMenu"
+      class="lg:hidden hidden border-t border-sage-100 bg-cream-50/98 backdrop-blur-xl animate-fade-in">
+      <div class="px-6 py-4 flex flex-col gap-1 text-sm font-medium">
+        <a href="../index.html" class="py-3 border-b border-sage-100 flex items-center justify-between">
+          Home <i data-lucide="chevron-right" class="w-4 h-4 text-sage-400"></i>
+        </a>
+        <a href="shop.html" class="py-3 border-b border-sage-100 flex items-center justify-between">
+          Shop All <i data-lucide="chevron-right" class="w-4 h-4 text-sage-400"></i>
+        </a>
+        <a href="shop.html#bedding" class="py-3 border-b border-sage-100 flex items-center justify-between">
+          Bedding Sets <i data-lucide="chevron-right" class="w-4 h-4 text-sage-400"></i>
+        </a>
+        <a href="shop.html#accessories" class="py-3 border-b border-sage-100 flex items-center justify-between">
+          Accessories <i data-lucide="chevron-right" class="w-4 h-4 text-sage-400"></i>
+        </a>
+        <a href="about.html" class="py-3 border-b border-sage-100 flex items-center justify-between">
+          Our Story <i data-lucide="chevron-right" class="w-4 h-4 text-sage-400"></i>
+        </a>
+        <a href="contact.html"
+          class="py-3 border-b border-sage-100 text-sage-700 font-semibold flex items-center justify-between">
+          Contact Support <i data-lucide="chevron-right" class="w-4 h-4 text-sage-400"></i>
+        </a>
+        <a href="shop.html#sale" class="py-3 text-terra-500 font-semibold flex items-center justify-between">
+          Seasonal Sale <span class="text-xs bg-terra-100 text-terra-700 px-2 py-0.5 rounded-full">Up to 30%</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════ CONTACT HERO TITLE ═══════ -->
+  <main class="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-16">
+    <div class="text-center mb-12 animate-fade-up">
+      <div
+        class="inline-flex items-center gap-2 text-terra-500 text-[11px] font-semibold tracking-[.2em] uppercase mb-3">
+        <span class="w-7 h-px bg-terra-500"></span> Client Concierge <span class="w-7 h-px bg-terra-500"></span>
+      </div>
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-ink-900">
+        How May We Assist You?
+      </h1>
+      <p class="text-ink-800/60 mt-3 max-w-lg mx-auto text-sm sm:text-base">
+        Whether you have questions about custom dimensions, fabric care, or order tracking, our team is at your service.
+      </p>
+    </div>
+
+    <!-- ═══════ CONTACT GRID: FORM + STORE DETAILS ═══════ -->
+    <div class="grid lg:grid-cols-[1.2fr_0.8fr] gap-10 lg:gap-14 items-start mb-20">
+      <!-- Contact Form Card -->
+      <div
+        class="bg-white rounded-[32px] p-7 sm:p-10 border border-sage-100 shadow-xl shadow-ink-900/4 animate-fade-up">
+        <h2 class="font-display text-2xl font-semibold mb-2 text-ink-900">Send an Inquiry</h2>
+        <p class="text-sm text-ink-800/60 mb-8">We reply within 24 business hours.</p>
+
+        <form data-contact-form class="space-y-5">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-ink-800/70 mb-2">Your Name *</label>
+              <input type="text" required placeholder="Ayesha Khan"
+                class="w-full px-4 py-3.5 rounded-2xl border-[1.5px] border-sage-200 bg-sage-50/60 focus:bg-white focus:border-sage-600 outline-none text-sm transition">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-ink-800/70 mb-2">Email Address *</label>
+              <input type="email" required placeholder="ayesha@example.com"
+                class="w-full px-4 py-3.5 rounded-2xl border-[1.5px] border-sage-200 bg-sage-50/60 focus:bg-white focus:border-sage-600 outline-none text-sm transition">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-ink-800/70 mb-2">Subject</label>
+            <select
+              class="w-full px-4 py-3.5 rounded-2xl border-[1.5px] border-sage-200 bg-sage-50/60 focus:bg-white focus:border-sage-600 outline-none text-sm transition text-ink-800">
+              <option>Bedding Sizing & Fit Consultation</option>
+              <option>Order Tracking & Delivery Status</option>
+              <option>Fabric Care & Washing Guidance</option>
+              <option>Bespoke / Custom Order Inquiries</option>
+              <option>Returns or Exchanges</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-ink-800/70 mb-2">Message *</label>
+            <textarea required rows="5" placeholder="Please describe how we can assist you..."
+              class="w-full px-4 py-3.5 rounded-2xl border-[1.5px] border-sage-200 bg-sage-50/60 focus:bg-white focus:border-sage-600 outline-none text-sm transition"></textarea>
+          </div>
+
+          <button type="submit"
+            class="w-full bg-sage-800 text-cream-100 py-4 rounded-2xl text-sm font-semibold hover:bg-sage-700 transition-all hover:shadow-xl hover:shadow-sage-800/20 flex items-center justify-center gap-2">
+            Send Message <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </form>
+      </div>
+
+      <!-- Store Details Panel -->
+      <div class="space-y-5 animate-fade-up" style="animation-delay:.1s">
+        <div class="bg-white rounded-[32px] p-7 sm:p-8 border border-sage-100 shadow-sm">
+          <h3 class="font-display text-xl font-semibold mb-5 text-ink-900">Direct Concierge</h3>
+          <ul class="space-y-4 text-sm text-ink-800/75">
+            <li class="flex items-center gap-3.5">
+              <div class="w-10 h-10 rounded-xl bg-sage-100 flex items-center justify-center text-sage-700 shrink-0">
+                <i data-lucide="mail" class="w-4.5 h-4.5"></i>
+              </div>
+              <div>
+                <div class="text-xs text-ink-800/50">Email Assistance</div>
+                <div class="font-semibold text-ink-900">concierge@paradisehome.pk</div>
+              </div>
+            </li>
+
+            <li class="flex items-center gap-3.5">
+              <div class="w-10 h-10 rounded-xl bg-sage-100 flex items-center justify-center text-sage-700 shrink-0">
+                <i data-lucide="phone" class="w-4.5 h-4.5"></i>
+              </div>
+              <div>
+                <div class="text-xs text-ink-800/50">WhatsApp & Phone</div>
+                <div class="font-semibold text-ink-900">+92 (042) 3578-9900</div>
+              </div>
+            </li>
+
+            <li class="flex items-center gap-3.5">
+              <div class="w-10 h-10 rounded-xl bg-sage-100 flex items-center justify-center text-sage-700 shrink-0">
+                <i data-lucide="clock" class="w-4.5 h-4.5"></i>
+              </div>
+              <div>
+                <div class="text-xs text-ink-800/50">Concierge Hours</div>
+                <div class="font-semibold text-ink-900">Mon – Sat, 10:00 AM – 7:00 PM PKT</div>
+              </div>
+            </li>
+
+            <li class="flex items-center gap-3.5">
+              <div class="w-10 h-10 rounded-xl bg-sage-100 flex items-center justify-center text-sage-700 shrink-0">
+                <i data-lucide="map-pin" class="w-4.5 h-4.5"></i>
+              </div>
+              <div>
+                <div class="text-xs text-ink-800/50">Atelier Location</div>
+                <div class="font-semibold text-ink-900">Gulberg III, Lahore, India</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Trust Card -->
+        <div class="bg-gradient-to-br from-sage-800 to-sage-900 rounded-[32px] p-7 text-white shadow-md">
+          <div class="flex items-center gap-3 mb-3">
+            <i data-lucide="shield-check" class="w-6 h-6 text-gold-400"></i>
+            <span class="font-semibold text-base">The Paradise Guarantee</span>
+          </div>
+          <p class="text-xs sm:text-sm text-cream-100/75 leading-relaxed">
+            Every set undergoes three rounds of artisan inspection before dispatch. If you're not thoroughly delighted,
+            return within 30 days for a full refund or exchange.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ FREQUENTLY ASKED QUESTIONS (ACCORDION) ═══════ -->
+    <section class="border-t border-sage-100 pt-16">
+      <div class="text-center mb-10">
+        <div
+          class="inline-flex items-center gap-2 text-terra-500 text-[11px] font-semibold tracking-[.2em] uppercase mb-2">
+          <span class="w-7 h-px bg-terra-500"></span> Quick Answers <span class="w-7 h-px bg-terra-500"></span>
+        </div>
+        <h2 class="font-display text-3xl font-semibold text-ink-900">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="max-w-3xl mx-auto space-y-3.5">
+        <details class="group bg-white rounded-2xl p-5 border border-sage-100 cursor-pointer shadow-xs" open>
+          <summary class="flex justify-between items-center font-semibold text-sm text-ink-900">
+            <span>What are the dimensions of King and Queen sets?</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-sage-600 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="mt-3 text-xs sm:text-sm text-ink-800/70 leading-relaxed">
+            Our King duvet cover measures 240 × 260 cm with 50 × 75 cm pillowcases. Queen duvets measure 220 × 240 cm.
+            All fitted sheets feature a deep 35 cm elasticized pocket that comfortably accommodates high-profile
+            pillow-top mattresses.
+          </p>
+        </details>
+
+        <details class="group bg-white rounded-2xl p-5 border border-sage-100 cursor-pointer shadow-xs">
+          <summary class="flex justify-between items-center font-semibold text-sm text-ink-900">
+            <span>How should I wash and care for hand-embroidered bedding?</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-sage-600 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="mt-3 text-xs sm:text-sm text-ink-800/70 leading-relaxed">
+            We recommend washing on a delicate 30°C cycle with a mild liquid detergent. Wash inside-out to protect the
+            embroidery threads. Line drying in natural shade preserves fabric softness and prevents shrinking.
+          </p>
+        </details>
+
+        <details class="group bg-white rounded-2xl p-5 border border-sage-100 cursor-pointer shadow-xs">
+          <summary class="flex justify-between items-center font-semibold text-sm text-ink-900">
+            <span>What are the delivery timelines across India?</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-sage-600 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="mt-3 text-xs sm:text-sm text-ink-800/70 leading-relaxed">
+            Major urban centers (Lahore, Karachi, Islamabad/Rawalpindi) typically receive delivery within 3 to 4
+            business days. Regional and nationwide destinations arrive within 5 business days via insured express
+            courier.
+          </p>
+        </details>
+
+        <details class="group bg-white rounded-2xl p-5 border border-sage-100 cursor-pointer shadow-xs">
+          <summary class="flex justify-between items-center font-semibold text-sm text-ink-900">
+            <span>Can I customize or request bespoke monogramming?</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-sage-600 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="mt-3 text-xs sm:text-sm text-ink-800/70 leading-relaxed">
+            Yes! For bridal registries or custom heirloom monograms, please reach out to our concierge via WhatsApp or
+            through the inquiry form above with your desired thread color and initials.
+          </p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer class="bg-ink-900 text-cream-100/70 border-t border-ink-800 mt-20">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
+      <div class="grid grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+        <div class="col-span-2">
+          <div class="flex items-center gap-2.5 mb-4">
+            <div class="w-9 h-9 rounded-full bg-cream-100 flex items-center justify-center">
+              <i data-lucide="feather" class="w-4 h-4 text-sage-900"></i>
+            </div>
+            <div>
+              <div class="font-display text-[20px] font-semibold text-cream-100 leading-none">
+                PARADISE<span class="text-terra-400 font-normal text-[15px]">home</span>
+              </div>
+              <div class="text-[9px] tracking-[.28em] text-sage-400 font-medium mt-0.5">QUIET LUXURY</div>
+            </div>
+          </div>
+          <p class="text-xs sm:text-sm leading-relaxed max-w-sm mb-5 text-cream-100/60">
+            Heirloom textiles, detailed embroidery, and quilted bedding crafted to elevate your daily living into
+            timeless comfort.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-cream-100 font-semibold text-xs tracking-wider uppercase mb-4">Collections</h4>
+          <ul class="space-y-2.5 text-xs sm:text-sm">
+            <li><a href="shop.html#bedding" class="hover:text-cream-100 transition-colors">Bedding Sets</a></li>
+            <li><a href="shop.html#accessories" class="hover:text-cream-100 transition-colors">Accessories</a></li>
+            <li><a href="shop.html#new" class="hover:text-cream-100 transition-colors">New Arrivals</a></li>
+            <li><a href="shop.html#sale" class="hover:text-terra-400 transition-colors text-terra-400">Sale</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-cream-100 font-semibold text-xs tracking-wider uppercase mb-4">Client Care</h4>
+          <ul class="space-y-2.5 text-xs sm:text-sm">
+            <li><a href="contact.html" class="hover:text-cream-100 transition-colors">Help Center</a></li>
+            <li><a href="contact.html" class="hover:text-cream-100 transition-colors">Delivery & Returns</a></li>
+            <li><a href="contact.html" class="hover:text-cream-100 transition-colors">Size Guide</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-cream-100 font-semibold text-xs tracking-wider uppercase mb-4">About</h4>
+          <ul class="space-y-2.5 text-xs sm:text-sm">
+            <li><a href="about.html" class="hover:text-cream-100 transition-colors">Our Story</a></li>
+            <li><a href="about.html" class="hover:text-cream-100 transition-colors">Craftsmanship</a></li>
+            <li><a href="about.html" class="hover:text-cream-100 transition-colors">Sustainability</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div
+        class="pt-8 border-t border-cream-100/10 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-cream-100/50">
+        <div>© 2025 Paradise Home Store. All rights reserved.</div>
+        <div class="flex items-center gap-1.5">Artisanally made with <span class="text-terra-400">♥</span> in India
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
